@@ -6,4 +6,12 @@
     </style>
 
     <style name="Theme.AppMoviles" parent="Base.Theme.AppMoviles" />
+
+
+
+    <style name="Theme.BottomNavigationView">
+        <item name="android:background">@color/black</item>
+        <item name="itemIconTint">@color/grisOscuro</item>
+        <item name="itemTextColor">@color/grisOscuro</item>
+    </style>
 </resources>
