@@ -7,4 +7,4 @@
 
 La versión v1, v2 y v3 se subirán cuando haya una aplicación funcional de android, escritorio o web.
 
-Cualquier commit con el mensaje autocommit se ha ejecutado desde un script, ya sea automáticamente por una tarea programada por llevar actualizados mis dos emplazamientos de trabajo o porque el cambio no ha sido notable.
+Cualquier commit con el mensaje autocommit se ha ejecutado desde un script, ya sea automáticamente por una tarea programada por llevar actualizados mis dos emplazamientos de trabajo, o porque el cambio no ha sido notable.
