@@ -16,6 +16,11 @@ public class Usuario implements Serializable {
     public String getContra(){
         return contra;
     }
+    private int foto;
+
+    public int getFoto() {
+        return foto;
+    }
 
     public Usuario(){
         id = 0;
