@@ -1,9 +1,9 @@
-#Bienvenido al proyecto COMMS.
+# Bienvenido al proyecto COMMS.
 
 
-##Comms es un proyecto para una red social que busca organizar planes entre amigos, familia o incluso en entornos laborales. 
+## Comms es un proyecto para una red social que busca organizar planes entre amigos, familia o incluso en entornos laborales. 
 
-##Está siendo desarroyado como proyecto intermodular para el Ciclo Superior DAM en el Colegio Vivas, por Ángel Miguéns Vázquez
+## Está siendo desarroyado como proyecto intermodular para el Ciclo Superior DAM en el Colegio Vivas, por Ángel Miguéns Vázquez
 
 La versión v1, v2 y v3 se subirán cuando haya una aplicación funcional de android, escritorio o web.
 
