@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('correo');
-            $table->string('correo');
+            $table->string('contraseña');
             $table->mediumText('foto')->charset('binary');
             $table->timestamps();
         });
