@@ -52,7 +52,83 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b49e7957-674e-407f-9b53-22c1b59689a0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/ApiRest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/.vscode/settings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/src/main/java/ejem1/GestionaUsuarios.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/src/main/java/ejem1/Usuario.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/src/main/webapp/index.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas.war" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/Car.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/Coche.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/Deportista.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/GestionaDeportistas$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/GestionaDeportistas.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/GestionaPersona.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/GestionaUsuarios$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/GestionaUsuarios.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/Hola.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/Persona.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/Personas.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/Usuario.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/aopalliance-repackaged-3.0.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/caffeine-2.9.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/checker-qual-3.32.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/error_prone_annotations-2.10.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/hk2-api-3.0.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/hk2-locator-3.0.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/hk2-utils-3.0.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/istack-commons-runtime-4.0.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/jackson-annotations-2.12.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/jackson-core-2.12.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/jackson-databind-2.12.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/jackson-module-jaxb-annotations-2.12.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/jakarta.activation-2.0.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/jakarta.annotation-api-2.0.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/jakarta.inject-api-2.0.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/jakarta.validation-api-3.0.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/jakarta.ws.rs-api-3.0.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/jakarta.xml.bind-api-3.0.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/javassist-3.25.0-GA.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/javax.activation-api-1.2.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/jaxb-api-2.3.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/jaxb-core-3.0.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/jaxb-runtime-3.0.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/jcl-over-slf4j-2.0.7.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/jersey-client-3.0.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/jersey-common-3.0.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/jersey-container-servlet-core-3.0.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/jersey-entity-filtering-3.0.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/jersey-hk2-3.0.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/jersey-media-jaxb-3.0.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/jersey-media-json-jackson-3.0.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/jersey-server-3.0.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/jna-5.13.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/jna-platform-5.13.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/mariadb-java-client-3.3.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/osgi-resource-locator-1.0.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/slf4j-api-2.0.7.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/txw2-3.0.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/lib/waffle-jna-3.3.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/index.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/classes/ejem1/GestionaUsuarios$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/classes/ejem1/GestionaUsuarios.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/classes/ejem1/Usuario.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/maven-archiver/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Larabel/public/media/img/iagodoval.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Larabel/public/media/img/lugonpa.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Larabel/public/media/img/skyhill.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Larabel/public/media/img/vivas.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Larabel/database/migrations/2026_01_27_122353_create_mensajes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/../Larabel/database/migrations/2026_01_27_122353_create_mensajes_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Larabel/database/migrations/2026_01_27_122406_create_actividades_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/../Larabel/database/migrations/2026_01_27_122406_create_actividades_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Larabel/database/migrations/2026_01_28_110508_create_usuarios-grupos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/../Larabel/database/migrations/2026_01_28_110508_create_usuarios-grupos_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Larabel/database/migrations/2026_01_28_110625_create_usuarios-actividades_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/../Larabel/database/migrations/2026_01_28_110625_create_usuarios-actividades_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Larabel/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/../Larabel/database/seeders/DatabaseSeeder.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,6 +179,7 @@
       <recent name="com.example.appmoviles" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.appmoviles.ui" />
       <recent name="com.example.appmoviles" />
     </key>
   </component>

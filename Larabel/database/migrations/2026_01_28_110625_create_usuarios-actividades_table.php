@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('usuarios-actividades', function (Blueprint $table) {
             $table->id();
-            $table->foreign('id_usuario')->references('id')->on('usuarios')->onDelete('cascade');
-            $table->foreign('id_actividad')->references('id')->on('actividades')->onDelete('cascade');
+            $table->foreignId('id_usuario')->constrained('usuarios')->onDelete('cascade');
+            $table->foreignId('id_actividad')->constrained('actividades')->onDelete('cascade');
+            $table->string("datos");
             $table->timestamps();
         });
     }

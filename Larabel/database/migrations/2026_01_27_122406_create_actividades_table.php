@@ -16,8 +16,8 @@ return new class extends Migration
             $table->date("fecha");
             $table->integer("tipo");
             $table->string("contenido");
-            $table->foreign('id_usuario')->references('id')->on('usuarios')->onDelete('cascade');
-            $table->foreign('id_grupo')->references('id')->on('grupos')->onDelete('cascade');
+            $table->foreignId('id_usuario')->constrained('usuarios')->onDelete('cascade');
+            $table->foreignId('id_grupo')->constrained('grupos')->onDelete('cascade');
             $table->timestamps();
         });
     }
