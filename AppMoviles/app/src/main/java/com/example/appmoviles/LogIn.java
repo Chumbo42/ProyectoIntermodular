@@ -26,7 +26,6 @@ public class LogIn extends AppCompatActivity {
     EditText etContra;
     Button btCrear;
     Button btLogin;
-    ArrayList<Usuario> usuarios;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +42,7 @@ public class LogIn extends AppCompatActivity {
         etContra = findViewById(R.id.etContra);
         btCrear = findViewById(R.id.btCrear);
         btLogin = findViewById(R.id.btLogin);
-        usuarios = Usuario.generarUsuarios();
+
 
         ActivityResultLauncher<Intent> launcher = registerForActivityResult(new
                 ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
@@ -55,7 +54,7 @@ public class LogIn extends AppCompatActivity {
                 if (intent != null){
                     if (intent.hasExtra("usuarioNuevo")){
                         Usuario u = (Usuario) intent.getSerializableExtra("usuarioNuevo");
-                           usuarios.add(u);
+                           ApiRest.subirUsuario(u);
                     }
 
                 }
@@ -69,16 +68,18 @@ public class LogIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                for (int i = 0; i < usuarios.size(); i++) {
-                    Log.i("Info", usuarios.get(i).getNombre());
-                    Log.i("Info", usuarios.get(i).getContra());
-                    if (etNombre.getText().toString().trim().equals(usuarios.get(i).getNombre()) && etContra.getText().toString().trim().equals(usuarios.get(i).getContra())){
-                        Intent principal = new Intent(getApplicationContext(), Principal.class);
-                        principal.putExtra("idUsuario", usuarios.get(i).getId());
-                        startActivity(principal);
+                Usuario u = ApiRest.obtenerUsuario(etNombre.getText().toString(), etContra.getText().toString());
 
-                    }
+
+                if (u != null){
+                    Intent principal = new Intent(getApplicationContext(), Principal.class);
+                    principal.putExtra("idUsuario", u.getId());
+                    startActivity(principal);
+
+                } else {
+                    Toast.makeText(LogIn.this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
                 }
+
 
             }
         });
@@ -87,7 +88,6 @@ public class LogIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), CrearCuenta.class);
-                i.putExtra("usuarios", usuarios);
                 launcher.launch(i);
             }
         });

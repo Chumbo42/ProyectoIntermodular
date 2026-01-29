@@ -23,7 +23,6 @@ public class CrearCuenta extends AppCompatActivity {
     EditText etNewName;
     EditText etNewPass;
     EditText etRepPass;
-    ArrayList<Usuario> usuarios;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +41,6 @@ public class CrearCuenta extends AppCompatActivity {
         etRepPass = findViewById(R.id.etRepPass);
 
         Intent i = getIntent();
-       usuarios = (ArrayList<Usuario>) i.getSerializableExtra("usuarios");
 
         btCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,23 +53,26 @@ public class CrearCuenta extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int i = 0;
+                boolean libre = ApiRest.usuarioLibre(etNewName.getText().toString());
 
-                while (i < usuarios.size() && !usuarios.get(i).getNombre().equals(etNewName.getText().toString())){
-                    i++;
-                }
-                if (i == usuarios.size() && etNewPass.getText().toString().equals(etRepPass.getText().toString()) ){
-                    Usuario n = new Usuario(etNewName.getText().toString(), etNewPass.getText().toString(), usuarios.size());
-                    Intent result = new Intent();
-                    result.putExtra("usuarioNuevo", n);
-                    setResult(RESULT_OK,result);
-                    finish();
-                }else {
-                    if (i != usuarios.size()){
-                        Toast.makeText(CrearCuenta.this, "Ya existe un usuario con ese nombre", Toast.LENGTH_SHORT).show();
+                if (etNewPass.getText().toString().equals(etRepPass.getText().toString())){
+                    if (libre){
+
+                        Usuario n = new Usuario(etNewName.getText().toString(), etNewPass.getText().toString());
+                        Intent result = new Intent();
+                        result.putExtra("usuarioNuevo", n);
+                        setResult(RESULT_OK,result);
+                        finish();
+
+
                     }else {
-                        Toast.makeText(CrearCuenta.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CrearCuenta.this, "Ya existe un usuario con ese nombre", Toast.LENGTH_SHORT).show();
                     }
+                }else{
+                    Toast.makeText(CrearCuenta.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
                 }
+
+
             }
         });
     }

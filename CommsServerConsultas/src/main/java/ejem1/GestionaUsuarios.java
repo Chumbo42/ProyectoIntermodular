@@ -14,6 +14,7 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.GenericEntity;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -41,7 +42,7 @@ public class GestionaUsuarios {
             
         try (Connection conexion = DriverManager.getConnection(URL, USER, PASS);
         Statement st = conexion.createStatement();
-        ResultSet rs = st.executeQuery("Select * from deportistas");
+        ResultSet rs = st.executeQuery("Select * from intermodular.usuarios");
         ) {
             while (rs.next()) {
                 lista.add(new Usuario(rs.getInt("id"),rs.getString("nombre"), rs.getString("correo"),rs.getString("contraseña"), rs.getBytes("foto")));
@@ -67,17 +68,29 @@ public class GestionaUsuarios {
 
     @GET
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    @Path("/{id}")
-    public Response ver(@PathParam("id") int id) {
+    @Path("/login")
+    public Response ver(@QueryParam("nombre") String nombre,@QueryParam("contra") String contra) {
         
         for (Usuario u : getUsuarios()) {
-            if (u.getId() == id) {
+            if (u.getNombre().equals(nombre) && u.getContraseña().equals(contra)) {
                 return Response.ok(u).build();
             }
         }
         return Response.status(Status.NOT_FOUND).entity("No se encontró").build();
     }
     
+    @GET
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Path("/nombres")
+    public Response ver(@QueryParam("nombre") String nombre) {
+        
+        for (Usuario u : getUsuarios()) {
+            if (u.getNombre().equals(nombre)) {
+                return Response.ok(u.getNombre()).build();
+            }
+        }
+        return Response.status(Status.NOT_FOUND).entity("No se encontró").build();
+    }
    
 
 }

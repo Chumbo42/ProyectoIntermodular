@@ -28,17 +28,11 @@ public class Usuario implements Serializable {
         contra = "";
     }
 
-    public Usuario(String nombre, String contra, int id){
-        this.id=id;
+    public Usuario(String nombre, String contra){
+
         this.nombre = nombre;
         this.contra = contra;
     }
 
-    public static ArrayList<Usuario> generarUsuarios(){
-        ArrayList<Usuario> usuarios = new ArrayList<>();
-        usuarios.add(new Usuario("lugonpa","fernando33",1));
-        usuarios.add(new Usuario("skyhill", "bandetinder",2));
-        usuarios.add(new Usuario("iagodoval", "ourensecampeon",3));
-        return usuarios;
-    }
+
 }

@@ -15,7 +15,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 public class ApiRest {
-    public void subirUsuario(String nombre, String contraseña){
+    public static void subirUsuario(Usuario u){
         new Thread(() -> {
             try {
                 URL url = new URL("http://192.130.0.26:8080/CommsServerConsultas/rest/deportistas/");
@@ -25,8 +25,8 @@ public class ApiRest {
                 con.setDoOutput(true);
 
                 JSONObject json = new JSONObject();
-                json.put("nombre", nombre);
-                json.put("contraseña", contraseña);
+                json.put("nombre", u.getNombre());
+                json.put("contraseña", u.getContra());
 
                 System.out.println(json);
 
@@ -45,10 +45,54 @@ public class ApiRest {
         }).start();
     }
 
-    public Usuario obtenerUsuario(String username, String contraseña) {
+    public static Usuario obtenerUsuario(String username, String contra) {
         try {
-            URL url = new URL(
-                    "http://10.0.2.2:8080/Comms/rest/deportistas?username=" + username );
+            Log.i("Flag", "Hola");
+            URL url = new URL("http://10.0.2.2:8080/CommsServerConsultas/rest/usuarios/login/usuario=" + username + "&contra=" + contra);
+
+            Log.i("Flag", "UrlBien");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Accept", "application/json");
+
+            Log.i("Flag", "Conexion");
+
+            int code = conn.getResponseCode();
+            Log.i("Codigo rest", "Código HTTP: " + code);
+            InputStream stream = conn.getInputStream();
+
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8) );
+
+            StringBuilder response = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null)
+            { response.append(line.trim());
+            }
+            JSONObject obj = new JSONObject(response.toString());
+            Log.i("Info", obj.getString("nombre"));
+
+            if (code == 200) {
+
+
+                String id = obj.getString("id");
+                String correo = obj.getString("correo");
+                byte[] foto = obj.getString("foto").getBytes();
+
+
+                return new Usuario();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null; // si hay error
+    }
+
+    public static boolean usuarioLibre(String username) {
+        try {
+            URL url = new URL("http://192.130.0.26:8080/CommsServerConsultas/rest/usuarios/nombres/nombre=" + username);
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -68,19 +112,16 @@ public class ApiRest {
             }
 
             if (code == 200) {
-                JSONObject obj = new JSONObject(response.toString());
-
-                String user = obj.getString("username");
-                String email = obj.getString("email");
-
-                return new Usuario(user, email);
+                if (username.equals(response.toString())){
+                    return false;
+                }
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return null; // si hay error
+        return true; // si hay error
     }
 
 
