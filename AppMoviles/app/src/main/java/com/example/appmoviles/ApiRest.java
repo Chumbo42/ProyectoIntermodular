@@ -48,7 +48,7 @@ public class ApiRest {
     public static Usuario obtenerUsuario(String username, String contra) {
         try {
             Log.i("Flag", "Hola");
-            URL url = new URL("http://10.0.2.2:8080/CommsServerConsultas/rest/usuarios/login/usuario=" + username + "&contra=" + contra);
+            URL url = new URL("http://192.130.0.26:8080/CommsServerConsultas/rest/usuarios/login/usuario=" + username + "&contra=" + contra);
 
             Log.i("Flag", "UrlBien");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
