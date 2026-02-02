@@ -52,7 +52,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b49e7957-674e-407f-9b53-22c1b59689a0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/ApiRest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/ApiRest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/target/classes/ejem1/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/classes/ejem1/Usuario.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

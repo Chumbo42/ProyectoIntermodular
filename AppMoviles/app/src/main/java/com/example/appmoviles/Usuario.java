@@ -16,9 +16,13 @@ public class Usuario implements Serializable {
     public String getContra(){
         return contra;
     }
-    private int foto;
+    private String correo;
+    public String getCorreo(){
+        return correo;
+    }
+    private byte[] foto;
 
-    public int getFoto() {
+    public byte[] getFoto() {
         return foto;
     }
 
@@ -32,6 +36,13 @@ public class Usuario implements Serializable {
 
         this.nombre = nombre;
         this.contra = contra;
+    }
+    public Usuario(int id, String nombre, String contra, String correo, byte[] foto){
+        this.id = id;
+        this.nombre = nombre;
+        this.contra = contra;
+        this.correo = correo;
+        this.foto = foto;
     }
 
 

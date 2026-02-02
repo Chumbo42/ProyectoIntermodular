@@ -13,6 +13,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.concurrent.Callable;
 
 public class ApiRest {
     public static void subirUsuario(Usuario u){
@@ -45,49 +46,42 @@ public class ApiRest {
         }).start();
     }
 
+
     public static Usuario obtenerUsuario(String username, String contra) {
-        try {
-            Log.i("Flag", "Hola");
-            URL url = new URL("http://192.130.0.26:8080/CommsServerConsultas/rest/usuarios/login/usuario=" + username + "&contra=" + contra);
+         // Array para gardar o resultado
 
-            Log.i("Flag", "UrlBien");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            conn.setRequestProperty("Accept", "application/json");
+        Usuario u;
 
-            Log.i("Flag", "Conexion");
+            try {
+                URL url = new URL("http://10.0.2.2:8080/CommsServerConsultas/rest/usuarios/login?nombre=" + username + "&contra=" + contra);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setRequestProperty("Accept", "application/json");
 
-            int code = conn.getResponseCode();
-            Log.i("Codigo rest", "Código HTTP: " + code);
-            InputStream stream = conn.getInputStream();
+                InputStream stream = conn.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
 
+                StringBuilder response = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    response.append(line.trim());
+                }
+                JSONObject obj = new JSONObject(response.toString());
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8) );
-
-            StringBuilder response = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null)
-            { response.append(line.trim());
-            }
-            JSONObject obj = new JSONObject(response.toString());
-            Log.i("Info", obj.getString("nombre"));
-
-            if (code == 200) {
-
-
-                String id = obj.getString("id");
+                String nom = obj.getString("nombre");
+                int id = Integer.parseInt(obj.getString("id"));
                 String correo = obj.getString("correo");
                 byte[] foto = obj.getString("foto").getBytes();
 
+                u = new Usuario(id, username, contra, correo, foto);
 
-                return new Usuario();
+            } catch(Exception e) {
+                Log.i("Except", e.toString());
+                e.printStackTrace();
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        return null;
 
-        return null; // si hay error
     }
 
     public static boolean usuarioLibre(String username) {

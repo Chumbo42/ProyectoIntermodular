@@ -2,6 +2,8 @@ package com.example.appmoviles;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +21,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
+
+
 
 public class LogIn extends AppCompatActivity {
 
@@ -65,24 +69,37 @@ public class LogIn extends AppCompatActivity {
         });
 
         btLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Usuario u = ApiRest.obtenerUsuario(etNombre.getText().toString(), etContra.getText().toString());
+           @Override
+           public void onClick(View v) {
 
 
-                if (u != null){
-                    Intent principal = new Intent(getApplicationContext(), Principal.class);
-                    principal.putExtra("idUsuario", u.getId());
-                    startActivity(principal);
+               String nombre = etNombre.getText().toString();
+               String contra = etContra.getText().toString();
 
-                } else {
-                    Toast.makeText(LogIn.this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
-                }
+               Handler mainHandler = new Handler(Looper.getMainLooper());
+
+               new Thread(() -> {
+                   Usuario u = ApiRest.obtenerUsuario(nombre, contra);
+
+                   mainHandler.post(() -> {
+                       if (u != null) {
+
+                           Intent principal = new Intent(getApplicationContext(), Principal.class);
+                           principal.putExtra("idUsuario", u.getId());
+                           startActivity(principal);
 
 
-            }
-        });
+                       } else {
+                           Toast.makeText(LogIn.this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
+                       }
+
+
+                   });
+
+               }).start();
+           }
+       });
+
 
         btCrear.setOnClickListener(new View.OnClickListener() {
             @Override
