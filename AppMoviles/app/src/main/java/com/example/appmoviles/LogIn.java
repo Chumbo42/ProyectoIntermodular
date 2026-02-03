@@ -58,7 +58,23 @@ public class LogIn extends AppCompatActivity {
                 if (intent != null){
                     if (intent.hasExtra("usuarioNuevo")){
                         Usuario u = (Usuario) intent.getSerializableExtra("usuarioNuevo");
-                           ApiRest.subirUsuario(u);
+                           ApiRest.subirUsuario(u, new LoginCallback() {
+                               @Override
+                               public void onLoginSuccess(Usuario usuario) {
+                                   // Mostrar mensaje
+                                   Toast.makeText(getApplicationContext(),
+                                           "Usuario Creado" ,
+                                           Toast.LENGTH_SHORT).show();
+
+                               }
+
+                               @Override
+                               public void onLoginFailure(String errorMessage) {
+                                   Toast.makeText(getApplicationContext(),
+                                           "Error: " + errorMessage,
+                                           Toast.LENGTH_LONG).show();
+                               }
+                           });
                     }
 
                 }
@@ -73,32 +89,48 @@ public class LogIn extends AppCompatActivity {
            public void onClick(View v) {
 
 
-               String nombre = etNombre.getText().toString();
-               String contra = etContra.getText().toString();
+               String username = etNombre.getText().toString().trim();
+               String password = etContra.getText().toString().trim();
 
-               Handler mainHandler = new Handler(Looper.getMainLooper());
-
-               new Thread(() -> {
-                   Usuario u = ApiRest.obtenerUsuario(nombre, contra);
-
-                   mainHandler.post(() -> {
-                       if (u != null) {
-
-                           Intent principal = new Intent(getApplicationContext(), Principal.class);
-                           principal.putExtra("idUsuario", u.getId());
-                           startActivity(principal);
+               if (username.isEmpty() || password.isEmpty()) {
+                   Toast.makeText(getApplicationContext(), "Introduce usuario y contraseña", Toast.LENGTH_SHORT).show();
+                   return;
+               }
 
 
-                       } else {
-                           Toast.makeText(LogIn.this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
-                       }
+
+               ApiRest.obtenerUsuario(username, password, new LoginCallback() {
+                   @Override
+                   public void onLoginSuccess(Usuario usuario) {
 
 
-                   });
+                       // Mostrar mensaje
+                       Toast.makeText(getApplicationContext(),
+                               "Bienvenido " + usuario.getNombre(),
+                               Toast.LENGTH_SHORT).show();
 
-               }).start();
+                       // Navegar a siguiente pantalla
+                       Intent intent = new Intent(getApplicationContext(), Principal.class);
+                       intent.putExtra("idUsuario", usuario.getId());
+                       startActivity(intent);
+                       finish();
+                   }
+
+                   @Override
+                   public void onLoginFailure(String errorMessage) {
+
+
+                       // Mostrar error
+                       Toast.makeText(getApplicationContext(),
+                               "Error: " + errorMessage,
+                               Toast.LENGTH_LONG).show();
+                   }
+               });
+
+
            }
        });
+
 
 
         btCrear.setOnClickListener(new View.OnClickListener() {

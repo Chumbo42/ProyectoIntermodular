@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:icon="@android:drawable/ic_menu_manage"
+        android:icon="@drawable/ic_settings_black"
         android:title="ajustes"
         app:showAsAction="always" />
 </menu>

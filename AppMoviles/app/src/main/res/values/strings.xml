@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">AppMoviles</string>
     <string name="title_activity_principal">Principal</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_chats">Chats</string>
+    <string name="title_actividades">Actividades</string>
+    <string name="title_user">Yo</string>
 </resources>

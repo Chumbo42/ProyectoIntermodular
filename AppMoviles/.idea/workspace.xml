@@ -20,6 +20,11 @@
           <theme>@style/Theme.AppMoviles</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/celda_chat.xml">
+        <config>
+          <theme>@style/Theme.AppMoviles</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_dashboard.xml">
         <config>
           <theme>@style/Theme.AppMoviles</theme>
@@ -40,6 +45,11 @@
           <theme>@style/Theme.AppMoviles</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/menu/toolbar_main.xml">
+        <config>
+          <theme>@style/Theme.AppMoviles</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/navigation/mobile_navigation.xml">
         <config>
           <theme>@style/Theme.AppMoviles</theme>
@@ -52,10 +62,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b49e7957-674e-407f-9b53-22c1b59689a0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/Chat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/LoginCallback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_settings_black.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/celda_chat.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/ApiRest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/ApiRest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/target/classes/ejem1/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/classes/ejem1/Usuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/LogIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/LogIn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/Principal.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/Principal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/ui/home/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/ui/home/HomeFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_home_black_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_chats_black_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_notifications_black_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_notifications_black_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/bottom_nav_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/bottom_nav_menu.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/toolbar_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/toolbar_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/mobile_navigation.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/mobile_navigation.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/src/main/java/ejem1/GestionaUsuarios.java" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/src/main/java/ejem1/GestionaUsuarios.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas.war" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/GestionaUsuarios$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/GestionaUsuarios$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/GestionaUsuarios.class" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/GestionaUsuarios.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/target/classes/ejem1/GestionaUsuarios$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/classes/ejem1/GestionaUsuarios$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/target/classes/ejem1/GestionaUsuarios.class" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/classes/ejem1/GestionaUsuarios.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +99,16 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="layoutResourceFile" />
+        <option value="resourceFile" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />

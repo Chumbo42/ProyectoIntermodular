@@ -9,6 +9,7 @@ import java.util.List;
 
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DefaultValue;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -22,6 +23,12 @@ import jakarta.ws.rs.core.Response.Status;
 
 @Path("/usuarios")
 public class GestionaUsuarios {
+
+    static Usuario u;
+
+    @DefaultValue("valor por defecto")
+    @QueryParam("valor")
+    String text;
 
     private static final String URL = "jdbc:mariadb://localhost:3306/ad_tema6";
     private static final String USER = "root";
@@ -53,6 +60,31 @@ public class GestionaUsuarios {
         }
           
         return lista;
+    }
+
+    public int subirUsuario(String nombre, String contraseña){
+        
+
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+
+
+        } catch (Exception e) {
+            return 0;
+        }
+
+            
+        try (Connection conexion = DriverManager.getConnection(URL, USER, PASS);
+        Statement st = conexion.createStatement();) 
+        {
+            int filas = st.executeUpdate("Insert into intermodular.usuarios(nombre,contraseña) values (\'" + nombre + "\',\'" + contraseña +"\')");
+            return filas;
+            
+        } catch (Exception e) {
+            
+        }
+        return 0;
+      
     }
 
     @GET
@@ -92,5 +124,14 @@ public class GestionaUsuarios {
         return Response.status(Status.NOT_FOUND).entity("No se encontró").build();
     }
    
+    
+    @POST
+    @Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/registrar")
+    public Response guardar(Usuario u) {
+        subirUsuario(u.getNombre(), u.getContraseña());
+        return Response.ok(u).build(); 
+    }
 
 }
