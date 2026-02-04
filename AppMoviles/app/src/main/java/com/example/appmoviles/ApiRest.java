@@ -15,6 +15,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
@@ -162,6 +163,69 @@ public class ApiRest {
         }
 
         return true; // si hay error
+    }
+
+    public static ArrayList<Chat> getMensajes(int id) {
+        // Ejecutar en hilo secundario
+        new Thread(() -> {
+            ArrayList<Chat> chats = new ArrayList<Chat>();
+            String errorMsg = null;
+
+            try {
+                URL url = new URL("http://10.0.2.2:8080/CommsServerConsultas/rest/usuarios/mensajes?id=" + id );
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setRequestProperty("Accept", "application/json");
+
+                // Verificar código de respuesta
+                int responseCode = conn.getResponseCode();
+                if (responseCode != HttpURLConnection.HTTP_OK) {
+                    if (responseCode != HttpURLConnection.HTTP_NOT_FOUND){
+                        errorMsg = "Error del servidor: " + responseCode;
+                    } else {
+                        errorMsg = "Credenciales Incorrectas";
+                    }
+                } else {
+                    InputStream stream = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
+
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        response.append(line.trim());
+                    }
+
+                    reader.close();
+                    conn.disconnect();
+
+                    JSONObject obj = new JSONObject(response.toString());
+
+                    String nom = obj.getString("nombre");
+                    int id = Integer.parseInt(obj.getString("id"));
+                    String correo = obj.getString("correo");
+                    byte[] foto = obj.getString("imagen").getBytes();
+
+                    u = new Usuario(id, username, contra, correo, foto);
+                }
+
+            } catch (Exception e) {
+                Log.e("Login", "Error en obtenerUsuario", e);
+                errorMsg = e.getMessage() != null ? e.getMessage() : "Error desconocido";
+            }
+
+            // Volver al hilo principal para llamar al callback
+            final Usuario usuario = u;
+            final String error = errorMsg;
+
+            new Handler(Looper.getMainLooper()).post(() -> {
+                if (usuario != null) {
+                    callback.onLoginSuccess(usuario);
+                } else {
+                    callback.onLoginFailure(error != null ? error : "Error al obtener usuario");
+                }
+            });
+
+        }).start();
     }
 
 

@@ -11,6 +11,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -27,7 +28,7 @@ public class Principal extends AppCompatActivity {
 
    Toolbar tb;
    ActionBar ab;
-   RecyclerView rv;
+
     private ActivityPrincipalBinding binding;
 
     @Override
@@ -46,11 +47,13 @@ public class Principal extends AppCompatActivity {
 //        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-        rv = findViewById(R.id.);
+        RecyclerView rv = findViewById(R.id.rvChats);
 
         Intent i = getIntent();
         int id = i.getIntExtra("idUsuario", -1);
-
+        DatosUsuarioLogueado viewModel = new ViewModelProvider(this).get(DatosUsuarioLogueado.class);
+        viewModel.setUserId(id);
+        viewModel.setRvChats(rv);
 
 
         tb = findViewById(R.id.toolbar);
@@ -58,14 +61,7 @@ public class Principal extends AppCompatActivity {
         ab = getSupportActionBar();
         ab.setTitle("Comms");
 
-        if (id != -1)
 
-        chats = chats.getChats(id);
-        miAdaptador = new MiAdaptadorLista(chats,this);
-        miLayoutManager = new GridLayoutManager(this,1);
-        rv = findViewById(R.id.rv2);
-        rv.setAdapter(miAdaptador);
-        rv.setLayoutManager(miLayoutManager);
 
 
     }
