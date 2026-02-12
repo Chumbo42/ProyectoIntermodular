@@ -63,10 +63,7 @@ public class AdaptadorChats extends RecyclerView.Adapter<AdaptadorChats.MyViewHo
     }
 
     public void setSelectedPos(int selectedPos){
-        if (selectedPos == this.selectedPos){
-            this.selectedPos = RecyclerView.NO_POSITION;
-            notifyItemChanged(selectedPos);
-        } else {
+
             if (this.selectedPos >= 0){
 
                 notifyItemChanged(this.selectedPos);
@@ -76,7 +73,7 @@ public class AdaptadorChats extends RecyclerView.Adapter<AdaptadorChats.MyViewHo
             }
             this.selectedPos = selectedPos;
             notifyItemChanged(selectedPos);
-        }
+        
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
