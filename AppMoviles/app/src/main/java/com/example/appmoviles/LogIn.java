@@ -103,13 +103,6 @@ public class LogIn extends AppCompatActivity {
                    @Override
                    public void onLoginSuccess(Usuario usuario) {
 
-
-                       // Mostrar mensaje
-                       Toast.makeText(getApplicationContext(),
-                               "Bienvenido " + usuario.getNombre(),
-                               Toast.LENGTH_SHORT).show();
-
-                       // Navegar a siguiente pantalla
                        Intent intent = new Intent(getApplicationContext(), Principal.class);
                        intent.putExtra("idUsuario", usuario.getId());
                        startActivity(intent);
@@ -119,8 +112,6 @@ public class LogIn extends AppCompatActivity {
                    @Override
                    public void onLoginFailure(String errorMessage) {
 
-
-                       // Mostrar error
                        Toast.makeText(getApplicationContext(),
                                "Error: " + errorMessage,
                                Toast.LENGTH_LONG).show();

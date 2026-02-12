@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 
 
 import androidx.activity.EdgeToEdge;
@@ -40,6 +41,7 @@ public class conversacion extends AppCompatActivity {
         setSupportActionBar(tb);
         ab = getSupportActionBar();
         ab.setTitle(chat.getNombre().toString());
+        ab.setDisplayHomeAsUpEnabled(true);
 
     }
 
@@ -48,5 +50,15 @@ public class conversacion extends AppCompatActivity {
         MenuInflater menuInflater=getMenuInflater();
         menuInflater.inflate(R.menu.toolbar_chat,menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

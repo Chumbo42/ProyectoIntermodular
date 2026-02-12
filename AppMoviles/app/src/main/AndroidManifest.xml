@@ -16,7 +16,9 @@
         tools:targetApi="31">
         <activity
             android:name=".conversacion"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".Principal" />
+
         <activity
             android:name=".Principal"
             android:exported="false"
