@@ -9,12 +9,13 @@
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="@color/black"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleTextColor="@color/white" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -32,7 +33,10 @@
             android:id="@+id/nav_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="?android:attr/windowBackground"
+            android:background="#161616"
+            app:itemIconTint="@color/white"
+            app:itemRippleColor="#191919"
+            app:itemTextColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

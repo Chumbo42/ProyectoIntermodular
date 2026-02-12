@@ -1,7 +1,10 @@
 package com.example.appmoviles;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 
@@ -55,6 +58,16 @@ public class Principal extends AppCompatActivity {
         viewModel.setUserId(id);
         viewModel.setRvChats(rv);
 
+        BottomNavigationView napView = findViewById(R.id.nav_view);
+
+// Solo si tienes Material 1.6.0+
+        try {
+            ColorStateList color = ColorStateList.valueOf(Color.parseColor("#191919"));
+            napView.setItemActiveIndicatorColor(color);
+        } catch (Exception e) {
+            // Versión antigua, no soporta indicador
+            Log.e("BottomNav", "Versión antigua de Material Components");
+        }
 
         tb = findViewById(R.id.toolbar);
         setSupportActionBar(tb);

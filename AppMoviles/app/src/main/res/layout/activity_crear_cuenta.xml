@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".CrearCuenta">
 
     <EditText
@@ -12,8 +13,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:backgroundTint="@color/white"
+        android:drawableTint="@color/white"
         android:ems="10"
         android:inputType="text"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/etNewPass"
         app:layout_constraintTop_toBottomOf="@+id/etNewPass" />
 
@@ -23,6 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="124dp"
         android:text="Vamos a crearte una cuenta"
+        android:textColor="@color/white"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,6 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nombre de usuario"
+        android:textColor="@color/white"
         app:layout_constraintBaseline_toBaselineOf="@+id/etNewName"
         app:layout_constraintEnd_toStartOf="@+id/etNewName"
         app:layout_constraintStart_toStartOf="parent" />
@@ -43,6 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Contraseña"
+        android:textColor="@color/white"
         app:layout_constraintBaseline_toBaselineOf="@+id/etNewPass"
         app:layout_constraintStart_toStartOf="@+id/lblNewNombre" />
 
@@ -51,6 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Repetir Contraseña"
+        android:textColor="@color/white"
         app:layout_constraintBaseline_toBaselineOf="@+id/etRepPass"
         app:layout_constraintStart_toStartOf="@+id/lblNewPass" />
 
@@ -59,8 +67,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="128dp"
+        android:backgroundTint="@color/white"
+        android:drawableTint="@color/white"
         android:ems="10"
         android:inputType="text"
+        android:textColor="@color/white"
+        android:textColorLink="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/lblNewNombre"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -70,29 +82,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:backgroundTint="@color/white"
+        android:drawableTint="@color/white"
         android:ems="10"
         android:inputType="text"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/etNewName"
         app:layout_constraintTop_toBottomOf="@+id/etNewName" />
 
     <Button
         android:id="@+id/btCancel"
-        style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_border"
+        android:backgroundTint="#FFFFFF"
         android:text="Cancelar"
-        android:textColor="#000000"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/btSubmit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btSubmit" />
 
     <Button
         android:id="@+id/btSubmit"
-        style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_border"
         android:text="Crear cuenta"
-        android:textColor="#000000"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btCancel"

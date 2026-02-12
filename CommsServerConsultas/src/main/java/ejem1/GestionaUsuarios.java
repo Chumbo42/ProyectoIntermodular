@@ -87,6 +87,43 @@ public class GestionaUsuarios {
       
     }
 
+    public ArrayList<Chat> getChats(int id){
+        ArrayList<Chat> lista = new ArrayList<>();
+
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+
+
+        } catch (Exception e) {
+            return null;
+        }
+
+            
+        try (Connection conexion = DriverManager.getConnection(URL, USER, PASS);
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery("Select * from intermodular.grupos where id IN (SELECT id_grupo from intermodular.`usuarios-grupos` WHERE id_usuario = \'" + id + "\')");
+        ) {
+            while (rs.next()) {
+                lista.add(new Grupo(rs.getInt("id"),rs.getString("nombre"),rs.getBytes("foto"), rs.getString("descripcion")));  
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
+        try (Connection conexion = DriverManager.getConnection(URL, USER, PASS);
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery("SELECT DISTINCT u.* FROM intermodular.usuarios u JOIN intermodular.privados ON (privados.usuario1 = " + id + " AND u.id = privados.usuario2) OR (privados.usuario2 = "+ id + " AND u.id = privados.usuario1)");
+        ) {
+            while (rs.next()) {
+                lista.add(new Chat(rs.getInt("id"),rs.getString("nombre"),rs.getBytes("foto"), true));  
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+          
+        return lista;
+    }
+
     @GET
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Response obtenerTodos(){
@@ -132,6 +169,19 @@ public class GestionaUsuarios {
     public Response guardar(Usuario u) {
         subirUsuario(u.getNombre(), u.getContraseña());
         return Response.ok(u).build(); 
+    }
+
+    @GET
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Path("/chats")
+    public Response ver(@QueryParam("id") int id) {
+        
+        ArrayList<Chat> chats = getChats(id);
+        if (chats.isEmpty()) {
+            return Response.status(Status.NOT_FOUND).entity("No se encontró").build();          
+        }else{
+            return Response.ok(chats).build();
+        }
     }
 
 }

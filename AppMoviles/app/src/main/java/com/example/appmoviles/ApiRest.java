@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -165,14 +166,14 @@ public class ApiRest {
         return true; // si hay error
     }
 
-    public static ArrayList<Chat> getMensajes(int id) {
+    public static ArrayList<Chat> getChats(int id, ChatsCallback callback) {
         // Ejecutar en hilo secundario
         new Thread(() -> {
             ArrayList<Chat> chats = new ArrayList<Chat>();
             String errorMsg = null;
 
             try {
-                URL url = new URL("http://10.0.2.2:8080/CommsServerConsultas/rest/usuarios/mensajes?id=" + id );
+                URL url = new URL("http://10.0.2.2:8080/CommsServerConsultas/rest/usuarios/chats?id=" + id );
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
                 conn.setRequestProperty("Accept", "application/json");
@@ -198,14 +199,20 @@ public class ApiRest {
                     reader.close();
                     conn.disconnect();
 
-                    JSONObject obj = new JSONObject(response.toString());
+                    JSONArray jsonArray = new JSONArray(response.toString());
 
-                    String nom = obj.getString("nombre");
-                    int id = Integer.parseInt(obj.getString("id"));
-                    String correo = obj.getString("correo");
-                    byte[] foto = obj.getString("imagen").getBytes();
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject obj = jsonArray.getJSONObject(i);
 
-                    u = new Usuario(id, username, contra, correo, foto);
+                        int idChat = obj.getInt("id");
+                        String nom = obj.getString("nombre");
+                        byte[] foto = obj.getString("foto").getBytes();
+                        Boolean privado = obj.getBoolean("privado");
+
+
+                        chats.add(new Chat(idChat, nom, foto, privado));
+                    }
+                    Log.d("API", "Respuesta del servidor: " + response.toString());
                 }
 
             } catch (Exception e) {
@@ -214,18 +221,19 @@ public class ApiRest {
             }
 
             // Volver al hilo principal para llamar al callback
-            final Usuario usuario = u;
+
             final String error = errorMsg;
 
             new Handler(Looper.getMainLooper()).post(() -> {
-                if (usuario != null) {
-                    callback.onLoginSuccess(usuario);
+                if (error == null) {
+                    callback.onLoginSuccess(chats);
                 } else {
-                    callback.onLoginFailure(error != null ? error : "Error al obtener usuario");
+                    callback.onLoginFailure(error);
                 }
             });
 
         }).start();
+        return null;
     }
 
 
