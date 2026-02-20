@@ -5,6 +5,7 @@ import static java.util.Base64.*;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,14 +26,15 @@ import java.util.Base64;
 public class AdaptadorAddPrivado extends RecyclerView.Adapter<AdaptadorAddPrivado.MyViewHolder>{
 
     int selectedPos = RecyclerView.NO_POSITION;
-    int usuario;
-    ArrayList<Usuario> usuarios;
+    int idUsuario;
+    ArrayList<Chat> chats;
     Context contexto;
 
-    public AdaptadorAddPrivado(ArrayList<Usuario> usuarios, Context contexto)
+    public AdaptadorAddPrivado(ArrayList<Chat> chats, Context contexto, int id)
     {
-        this.usuarios = usuarios;
+        this.chats = chats;
         this.contexto = contexto;
+        idUsuario=id;
     }
 
     @NonNull
@@ -45,16 +47,23 @@ public class AdaptadorAddPrivado extends RecyclerView.Adapter<AdaptadorAddPrivad
 
     @Override
     public void onBindViewHolder(@NonNull AdaptadorAddPrivado.MyViewHolder holder, int position) {
-        Usuario u = this.usuarios.get(position);
-        String stringImagen = new String(u.getFoto());
-        byte[] byteImagen = android.util.Base64.decode(stringImagen, android.util.Base64.DEFAULT);
-        holder.obtenerFoto().setImageBitmap(BitmapFactory.decodeByteArray(byteImagen,0,byteImagen.length));
-        holder.obtenerNombre().setText(u.getNombre().toString());
+        Chat c = this.chats.get(position);
+
+        if(c.getFoto() != null && !c.getFoto().toString().trim().equals("") ){
+
+            String stringImagen = new String(c.getFoto());
+            byte[] byteImagen = android.util.Base64.decode(stringImagen, android.util.Base64.DEFAULT);
+            holder.obtenerFoto().setImageBitmap(BitmapFactory.decodeByteArray(byteImagen, 0, byteImagen.length));
+        }else {
+            holder.obtenerFoto().setImageResource(R.drawable.img_usuario);
+        }
+
+        holder.obtenerNombre().setText(c.getNombre().toString());
     }
 
     @Override
     public int getItemCount() {
-        return (usuarios != null) ? usuarios.size() : 0;
+        return (chats != null) ? chats.size() : 0;
     }
 
     public int getSelectedPos(){
@@ -91,19 +100,10 @@ public class AdaptadorAddPrivado extends RecyclerView.Adapter<AdaptadorAddPrivad
             viewElemento.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // getAdapterPosition devuelve la posición del view en el adaptador
-                    int posPulsada = getAdapterPosition();
-                    setSelectedPos(posPulsada);
-
-                    // Si hay una posición marcada se muestra un Toast
-                    if (selectedPos > RecyclerView.NO_POSITION) {
-//                        Intent intent = new Intent(contexto, conversacion.class);
-//                        intent.putExtra("usuario", idUsuario);
-//                        intent.putExtra("chat",chats.get(posPulsada));
-//                        intent.putExtra("isPrivado",chats.get(posPulsada).getPrivado());
-//                        contexto.startActivity(intent);
-
-                    }
+                    Intent i = new Intent(contexto, confirmarAddPrivado.class);
+                    i.putExtra("chat", chats.get(getAdapterPosition()));
+                    i.putExtra("idUsuario",idUsuario);
+                    contexto.startActivity(i);
                 }
             });
 

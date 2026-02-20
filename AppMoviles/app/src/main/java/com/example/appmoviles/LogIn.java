@@ -104,7 +104,7 @@ public class LogIn extends AppCompatActivity {
                    public void onLoginSuccess(Usuario usuario) {
 
                        Intent intent = new Intent(getApplicationContext(), Principal.class);
-                       intent.putExtra("idUsuario", usuario.getId());
+                       intent.putExtra("usuario", usuario);
                        startActivity(intent);
                        finish();
                    }

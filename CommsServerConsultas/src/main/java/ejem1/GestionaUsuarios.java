@@ -1,5 +1,6 @@
 package ejem1;
 
+import java.io.Console;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -62,7 +63,7 @@ public class GestionaUsuarios {
         return lista;
     }
 
-    public ArrayList<Usuario> getUsuarios(String nombre) {
+    public ArrayList<Usuario> getUsuarios(String nombre, int id) {
         ArrayList<Usuario> lista = new ArrayList<>();
 
         try {
@@ -72,9 +73,13 @@ public class GestionaUsuarios {
             return null;
         }
 
+        String consulta = "SELECT * FROM intermodular.usuarios WHERE nombre LIKE '" + nombre + "%' AND id != " + id;
+
+        System.out.println(consulta);
+
         try (Connection conexion = DriverManager.getConnection(URL, USER, PASS);
                 Statement st = conexion.createStatement();
-                ResultSet rs = st.executeQuery("Select * from intermodular.usuarios WHERE nombre LIKE " + nombre + "%");) {
+                ResultSet rs = st.executeQuery(consulta);) {
             while (rs.next()) {
                 lista.add(new Usuario(rs.getInt("id"), rs.getString("nombre"), rs.getString("correo"),
                         rs.getString("contraseña"), rs.getBytes("foto")));
@@ -135,7 +140,7 @@ public class GestionaUsuarios {
         try (Connection conexion = DriverManager.getConnection(URL, USER, PASS);
                 Statement st = conexion.createStatement();
                 ResultSet rs = st.executeQuery(
-                        "SELECT DISTINCT u.* FROM intermodular.usuarios u JOIN intermodular.privados ON (privados.usuario1 = "
+                        "SELECT DISTINCT * FROM intermodular.usuarios AS u JOIN intermodular.privados ON (privados.usuario1 = "
                                 + id + " AND u.id = privados.usuario2) OR (privados.usuario2 = " + id
                                 + " AND u.id = privados.usuario1)");) {
             while (rs.next()) {
@@ -148,7 +153,42 @@ public class GestionaUsuarios {
         return lista;
     }
 
-    public ArrayList<Mensaje> getMensajes(int id, Boolean privado) {
+    public ArrayList<Mensaje> getMensajes(int idc, int idu) {
+
+        ArrayList<Mensaje> lista = new ArrayList<>();
+        String consulta;
+
+        consulta = "SELECT * FROM intermodular.msgprivado AS m " +
+                "JOIN intermodular.privados AS p ON m.conversacion = p.id " +
+                "WHERE (p.usuario1 = " +
+                idu + " AND p.usuario2 = " + idc +
+                " OR p.usuario1 = " +
+                idc + " AND p.usuario2 = " + idu +
+                ")";
+
+        System.out.println(consulta);
+
+        try (Connection conexion = DriverManager.getConnection(URL, USER, PASS);
+                Statement st = conexion.createStatement();
+                ResultSet rs = st.executeQuery(consulta)) {
+
+            while (rs.next()) {
+                lista.add(new Mensaje(
+                        rs.getInt("id"),
+                        rs.getString("contenido"),
+                        rs.getDate("fecha"),
+                        rs.getInt("autor")));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return lista;
+
+    }
+
+    public ArrayList<Mensaje> getMensajes(int id) {
         ArrayList<Mensaje> lista = new ArrayList<>();
 
         try {
@@ -161,24 +201,13 @@ public class GestionaUsuarios {
 
         String consulta;
 
-        if (privado) {
+        consulta = "SELECT * FROM intermodular.mensajes " +
+                "WHERE id_grupo = " +
+                id +
+                "";
+        try (
 
-            consulta = "SELECT m.* FROM intermodular.msgprivado m " +
-                    "JOIN intermodular.privados p ON m.conversacion = p.id " +
-                    "WHERE (p.usuario1 = " +
-                    id +
-                    " OR p.usuario2 = " +
-                    id +
-                    ")";
-        } else {
-
-            consulta = "SELECT * FROM intermodular.mensajes " +
-                    "WHERE id_grupo = " +
-                    id +
-                    "";
-        }
-
-        try (Connection conexion = DriverManager.getConnection(URL, USER, PASS);
+                Connection conexion = DriverManager.getConnection(URL, USER, PASS);
                 Statement st = conexion.createStatement();
                 ResultSet rs = st.executeQuery(consulta)) {
 
@@ -213,16 +242,17 @@ public class GestionaUsuarios {
         if (privado) {
 
             consulta = "INSERT INTO intermodular.msgprivado (conversacion, autor, contenido, fecha) SELECT " +
-                        "(SELECT id FROM intermodular.privados WHERE (usuario1 =" + autor + " AND usuario2 = "+ idConversacion +" ) OR (usuario1 = "+ idConversacion + " AND usuario2 = " + autor + ") LIMIT 1)," + 
-                        autor + "," +
-                        "'" + contenido.getContenido() + "', '" + 
-                        fechaFormateada + "'";
+                    "(SELECT id FROM intermodular.privados WHERE (usuario1 =" + autor + " AND usuario2 = "
+                    + idConversacion + " ) OR (usuario1 = " + idConversacion + " AND usuario2 = " + autor
+                    + ") LIMIT 1)," +
+                    autor + "," +
+                    "'" + contenido.getContenido() + "', '" +
+                    fechaFormateada + "'";
 
-                        
-        }
-        else{
+        } else {
             consulta = "INSERT INTO intermodular.mensajes (id_grupo, autor, contenido, fecha) " +
-                    "VALUES (" + idConversacion + ", " + autor + ", '" + contenido.getContenido() + "', '" + fechaFormateada + "')" ;
+                    "VALUES (" + idConversacion + ", " + autor + ", '" + contenido.getContenido() + "', '"
+                    + fechaFormateada + "')";
         }
         System.out.println("Query ejecutada: " + consulta);
         try (Connection conexion = DriverManager.getConnection(URL, USER, PASS);
@@ -254,9 +284,9 @@ public class GestionaUsuarios {
     @GET
     @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
     @Path("/pornombre")
-    public Response obtenerPorNombre(@QueryParam("nombre") String nombre) {
+    public Response obtenerPorNombre(@QueryParam("nombre") String nombre, @QueryParam("id") int id) {
 
-        GenericEntity<List<Usuario>> entity = new GenericEntity<List<Usuario>>(getUsuarios(nombre)) {
+        GenericEntity<List<Usuario>> entity = new GenericEntity<List<Usuario>>(getUsuarios(nombre, id)) {
         };
         Response response = Response.ok(entity).build();
 
@@ -290,6 +320,47 @@ public class GestionaUsuarios {
         return Response.status(Status.NOT_FOUND).entity("No se encontró").build();
     }
 
+    @GET
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Path("/usuario")
+    public Response getUsuario(@QueryParam("nombre") String nombre, @QueryParam("contra") String contra) {
+
+        try {
+
+            Class.forName("org.mariadb.jdbc.Driver");
+
+        } catch (Exception e) {
+            return null;
+        }
+
+        String consulta;
+
+        consulta = "SELECT * FROM intermodular.usuarios " +
+                "WHERE nombre = '" +
+                nombre +
+                "' AND contraseña = '" +
+                contra +
+                "' LIMIT 1";
+
+        System.out.println(consulta);
+
+        Usuario u = null;
+
+        try (
+                Connection conexion = DriverManager.getConnection(URL, USER, PASS);
+                Statement st = conexion.createStatement();
+                ResultSet rs = st.executeQuery(consulta)) {
+            rs.next();
+            u = new Usuario(rs.getInt("id"), rs.getString("nombre"), rs.getString("correo"),
+                    rs.getString("contraseña"), rs.getBytes("foto"));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Response.ok(u).build();
+    }
+
     @POST
     @Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
     @Produces(MediaType.APPLICATION_JSON)
@@ -315,9 +386,22 @@ public class GestionaUsuarios {
     @GET
     @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
     @Path("/mensajes")
-    public Response obtenerMensajes(@QueryParam("id") int id, @QueryParam("privado") Boolean privado) {
+    public Response obtenerMensajes(@QueryParam("id") int id) {
 
-        GenericEntity<List<Mensaje>> entity = new GenericEntity<List<Mensaje>>(getMensajes(id, privado)) {
+        GenericEntity<List<Mensaje>> entity = new GenericEntity<List<Mensaje>>(getMensajes(id)) {
+        };
+        Response response = Response.ok(entity).build();
+
+        return response;
+
+    }
+
+    @GET
+    @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+    @Path("/mensajespriv")
+    public Response obtenerMensajesPriv(@QueryParam("idc") int idc, @QueryParam("idu") int idu) {
+
+        GenericEntity<List<Mensaje>> entity = new GenericEntity<List<Mensaje>>(getMensajes(idc, idu)) {
         };
         Response response = Response.ok(entity).build();
 
@@ -334,7 +418,7 @@ public class GestionaUsuarios {
             @QueryParam("privado") boolean privado,
             @QueryParam("autor") int autor) {
 
-        System.out.println( conversacion + autor);
+        System.out.println(conversacion + autor);
 
         if (contenido == null) {
             System.out.println("Mensaje es NULL");
@@ -348,6 +432,41 @@ public class GestionaUsuarios {
         } else {
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Error al enviar mensaje").build();
         }
+    }
+
+    @GET
+    @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+    @Path("/crearmd")
+    public Response crearMd(@QueryParam("ua") int ua, @QueryParam("ub") int ub) {
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+        } catch (Exception e) {
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Error al crear la relacion").build();
+        }
+        int filas = 0;
+        String consulta = "INSERT INTO intermodular.privados (usuario1, usuario2)" +
+                "SELECT " + ua + "," + ub +
+                " WHERE NOT EXISTS ( " +
+                "SELECT " + ua + " FROM intermodular.privados " +
+                "WHERE (usuario1 = " + ua + " AND usuario2 = " + ub + ") " +
+                "OR (usuario1 = " + ub + " AND usuario2 = " + ua + ") " +
+                ");";
+
+        System.out.println("Query ejecutada: " + consulta);
+        try (Connection conexion = DriverManager.getConnection(URL, USER, PASS);
+                Statement st = conexion.createStatement()) {
+
+            filas = st.executeUpdate(consulta);
+
+        } catch (Exception e) {
+            System.err.println("Error al crear la relacion: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        Response response = Response.ok("relacion creada, " + filas + " filas afectadas").build();
+
+        return response;
+
     }
 
 }

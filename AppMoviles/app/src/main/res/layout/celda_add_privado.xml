@@ -5,7 +5,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginBottom="1dp"
-    android:background="#161616">
+    android:background="@drawable/img_border"
+    android:backgroundTint="@color/morado">
 
     <ImageView
         android:id="@+id/ivAddPrivado"

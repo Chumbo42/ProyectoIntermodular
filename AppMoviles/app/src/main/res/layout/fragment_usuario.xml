@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grisOscuro"
+    tools:context=".ui.usuario.UsuarioFragment">
+
+    <Button
+        android:id="@+id/btCContra2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_border"
+        android:text="Cerrar sesión"
+        app:layout_constraintStart_toStartOf="@+id/btCCorreo"
+        app:layout_constraintTop_toBottomOf="@+id/btCContra" />
+
+    <TextView
+        android:id="@+id/tvMail"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvUsuario" />
+
+    <ImageView
+        android:id="@+id/ivUsuario"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="64dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivUsuario" />
+
+    <Button
+        android:id="@+id/btCNombre"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/button_border"
+        android:text="Cambiar Nombre de usuario"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMail" />
+
+    <Button
+        android:id="@+id/btCCorreo"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_border"
+        android:text="Cambiar correo"
+        app:layout_constraintStart_toStartOf="@+id/btCFoto"
+        app:layout_constraintTop_toBottomOf="@+id/btCFoto" />
+
+    <Button
+        android:id="@+id/btCContra"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_border"
+        android:text="Cambiar contraseña"
+        app:layout_constraintStart_toStartOf="@+id/btCCorreo"
+        app:layout_constraintTop_toBottomOf="@+id/btCCorreo" />
+
+    <Button
+        android:id="@+id/btCFoto"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_border"
+        android:text="Cambiar foto de perfil"
+        app:layout_constraintStart_toStartOf="@+id/btCNombre"
+        app:layout_constraintTop_toBottomOf="@+id/btCNombre" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

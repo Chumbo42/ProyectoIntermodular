@@ -18,6 +18,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class add extends AppCompatActivity {
+    int idUsuario;
 
     Toolbar tb;
     ActionBar ab;
@@ -35,6 +36,10 @@ public class add extends AppCompatActivity {
             return insets;
         });
 
+        Intent pre = getIntent();
+        idUsuario = pre.getIntExtra("idUsuario", -1);
+        Log.i("ID", "idUsuario: " + idUsuario);
+
         tb = findViewById(R.id.tbAdd);
         setSupportActionBar(tb);
         ab = getSupportActionBar();
@@ -48,6 +53,7 @@ public class add extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(), add_privado.class);
+                i.putExtra("idUsuario",idUsuario);
                 startActivity(i);
                 finish();
             }
@@ -59,6 +65,7 @@ public class add extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(), add_grupo.class);
+                i.putExtra("idUsuario",idUsuario);
                 startActivity(i);
                 finish();
             }

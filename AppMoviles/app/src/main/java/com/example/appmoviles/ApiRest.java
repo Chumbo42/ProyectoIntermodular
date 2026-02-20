@@ -4,6 +4,7 @@ package com.example.appmoviles;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -14,6 +15,7 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 
+import java.io.Console;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -230,13 +232,17 @@ public class ApiRest {
                         Boolean privado = obj.getBoolean("privado");
 
                         byte[] foto;
-                        try{
-                            foto = obj.optString("foto",null).getBytes();
+
+                        try {
+                            String imgStr = obj.getString("foto");
+                            if (!imgStr.equals("")){
+                                foto = imgStr.getBytes();
+                            } else {
+                                foto = null;
+                            }
+
                         }catch (NullPointerException e){
-                            Bitmap bitmap = BitmapFactory.decodeResource(contexto.getResources(),R.drawable.img_usuario);
-                            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-                            foto = baos.toByteArray();
+                            foto = null;
                         }
 
 
@@ -266,69 +272,136 @@ public class ApiRest {
         return null;
     }
 
-    public static ArrayList<Mensaje> getMsgs(int id, boolean isPrivado, MsgsCallback callback) {
+    public static ArrayList<Mensaje> getMsgs(int idChat, int idUsuario, boolean isPrivado, MsgsCallback callback) {
         new Thread(() -> {
             ArrayList<Mensaje> mensajes = new ArrayList<>();
             String errorMsg = null;
 
-            try {
-                URL url = new URL("http://" + ip + "/CommsServerConsultas/rest/usuarios/mensajes?id=" + id + "&privado=" + isPrivado);
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestMethod("GET");
-                conn.setRequestProperty("Accept", "application/json");
+            if (isPrivado){
+                try {
+                    URL url = new URL("http://" + ip + "/CommsServerConsultas/rest/usuarios/mensajespriv?idc=" + idChat + "&idu=" + idUsuario);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("GET");
+                    conn.setRequestProperty("Accept", "application/json");
 
-                int responseCode = conn.getResponseCode();
-                if (responseCode != HttpURLConnection.HTTP_OK) {
-                    if (responseCode != HttpURLConnection.HTTP_NOT_FOUND) {
-                        errorMsg = "Error del servidor: " + responseCode;
+                    int responseCode = conn.getResponseCode();
+                    if (responseCode != HttpURLConnection.HTTP_OK) {
+                        if (responseCode != HttpURLConnection.HTTP_NOT_FOUND) {
+                            errorMsg = "Error del servidor: " + responseCode;
+                        } else {
+                            errorMsg = "No se encontraron mensajes";
+                        }
                     } else {
-                        errorMsg = "No se encontraron mensajes";
+                        InputStream stream = conn.getInputStream();
+                        BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
+
+                        StringBuilder response = new StringBuilder();
+                        String line;
+                        while ((line = reader.readLine()) != null) {
+                            response.append(line.trim());
+                        }
+
+                        reader.close();
+                        conn.disconnect();
+
+                        JSONArray jsonArray = new JSONArray(response.toString());
+
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject obj = jsonArray.getJSONObject(i);
+
+                            int idMensaje = obj.getInt("id");
+                            int autor = obj.getInt("autor");
+                            String contenido = obj.getString("contenido");
+                            String fechaStr = obj.getString("fecha");
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.getDefault());
+                            Date fecha = sdf.parse(fechaStr);
+
+                            mensajes.add(new Mensaje(idMensaje, autor, contenido, fecha));
+                        }
+
+                        Log.d("API", "Respuesta del servidor: " + response.toString());
                     }
-                } else {
-                    InputStream stream = conn.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
 
-                    StringBuilder response = new StringBuilder();
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        response.append(line.trim());
-                    }
-
-                    reader.close();
-                    conn.disconnect();
-
-                    JSONArray jsonArray = new JSONArray(response.toString());
-
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject obj = jsonArray.getJSONObject(i);
-
-                        int idMensaje = obj.getInt("id");
-                        int autor = obj.getInt("autor");
-                        String contenido = obj.getString("contenido");
-                        String fechaStr = obj.getString("fecha");
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.getDefault());
-                        Date fecha = sdf.parse(fechaStr);
-
-                        mensajes.add(new Mensaje(idMensaje, autor, contenido, fecha));
-                    }
-
-                    Log.d("API", "Respuesta del servidor: " + response.toString());
+                } catch (Exception e) {
+                    Log.e("getMsgs", "Error al obtener mensajes", e);
+                    errorMsg = e.getMessage() != null ? e.getMessage() : "Error desconocido";
                 }
 
-            } catch (Exception e) {
-                Log.e("getMsgs", "Error al obtener mensajes", e);
-                errorMsg = e.getMessage() != null ? e.getMessage() : "Error desconocido";
+                final String error = errorMsg;
+
+                new Handler(Looper.getMainLooper()).post(() -> {
+                    if (error == null) {
+                        callback.onLoginSuccess(mensajes);
+                    } else {
+                        callback.onLoginFailure(error);
+                    }
+                });
+
+
             }
 
-            final String error = errorMsg;
+            else{
+                try {
+                    URL url = new URL("http://" + ip + "/CommsServerConsultas/rest/usuarios/mensajes?id=" + idChat);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("GET");
+                    conn.setRequestProperty("Accept", "application/json");
 
-            new Handler(Looper.getMainLooper()).post(() -> {
-                if (error == null) {
-                    callback.onLoginSuccess(mensajes);
-                } else {
-                    callback.onLoginFailure(error);
+                    int responseCode = conn.getResponseCode();
+                    if (responseCode != HttpURLConnection.HTTP_OK) {
+                        if (responseCode != HttpURLConnection.HTTP_NOT_FOUND) {
+                            errorMsg = "Error del servidor: " + responseCode;
+                        } else {
+                            errorMsg = "No se encontraron mensajes";
+                        }
+                    } else {
+                        InputStream stream = conn.getInputStream();
+                        BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
+
+                        StringBuilder response = new StringBuilder();
+                        String line;
+                        while ((line = reader.readLine()) != null) {
+                            response.append(line.trim());
+                        }
+
+                        reader.close();
+                        conn.disconnect();
+
+                        JSONArray jsonArray = new JSONArray(response.toString());
+
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject obj = jsonArray.getJSONObject(i);
+
+                            int idMensaje = obj.getInt("id");
+                            int autor = obj.getInt("autor");
+                            String contenido = obj.getString("contenido");
+                            String fechaStr = obj.getString("fecha");
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.getDefault());
+                            Date fecha = sdf.parse(fechaStr);
+
+                            mensajes.add(new Mensaje(idMensaje, autor, contenido, fecha));
+                        }
+
+                        Log.d("API", "Respuesta del servidor: " + response.toString());
+                    }
+
+                } catch (Exception e) {
+                    Log.e("getMsgs", "Error al obtener mensajes", e);
+                    errorMsg = e.getMessage() != null ? e.getMessage() : "Error desconocido";
                 }
-            });
+
+                final String error = errorMsg;
+
+                new Handler(Looper.getMainLooper()).post(() -> {
+                    if (error == null) {
+                        callback.onLoginSuccess(mensajes);
+                    } else {
+                        callback.onLoginFailure(error);
+                    }
+                });
+
+
+            }
 
 
 
@@ -379,6 +452,121 @@ public class ApiRest {
 
         }).start();
     }
+
+
+    public static ArrayList<Chat> getListaUsuarios(String nombre,int idUsuario, Context contexto, ChatsCallback callback) {
+        // Ejecutar en hilo secundario
+        new Thread(() -> {
+            ArrayList<Chat> chats = new ArrayList<Chat>();
+            String errorMsg = null;
+
+            try {
+                URL url = new URL("http://" + ip + "/CommsServerConsultas/rest/usuarios/pornombre?nombre=" + nombre + "&id=" + idUsuario );
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setRequestProperty("Accept", "application/json");
+
+                // Verificar código de respuesta
+                int responseCode = conn.getResponseCode();
+                if (responseCode != HttpURLConnection.HTTP_OK) {
+                    if (responseCode != HttpURLConnection.HTTP_NOT_FOUND){
+                        errorMsg = "Error del servidor: " + responseCode;
+                    } else {
+                        errorMsg = "Credenciales Incorrectas";
+                    }
+                } else {
+                    InputStream stream = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
+
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        response.append(line.trim());
+                    }
+
+                    reader.close();
+                    conn.disconnect();
+
+                    JSONArray jsonArray = new JSONArray(response.toString());
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject obj = jsonArray.getJSONObject(i);
+
+                        int idChat = obj.getInt("id");
+                        String nom = obj.getString("nombre");
+
+                        byte[] foto;
+
+                        try {
+                            String imgStr = obj.getString("imagen");
+                            if (!imgStr.equals("")){
+                                foto = imgStr.getBytes();
+                            } else {
+                                foto = null;
+                            }
+
+                        }catch (NullPointerException e){
+                            foto = null;
+                        }
+
+                        chats.add(new Chat(idChat, nom, foto, true));
+                    }
+                    Log.d("API", "Respuesta del servidor: " + response.toString());
+                }
+
+            } catch (Exception e) {
+                Log.e("Login", "Error en obtenerUsuario", e);
+                errorMsg = e.getMessage() != null ? e.getMessage() : "Error desconocido";
+            }
+
+            // Volver al hilo principal para llamar al callback
+
+            final String error = errorMsg;
+
+            new Handler(Looper.getMainLooper()).post(() -> {
+                if (error == null) {
+                    callback.onLoginSuccess(chats);
+                } else {
+                    callback.onLoginFailure(error);
+                }
+            });
+
+        }).start();
+        return null;
+    }
+
+    public static void crearPrivado(int idUsuario1, int idUsuario2, CrearMdCallback callback){
+        new Thread(() -> {
+            String errorMsg = null;
+            try {
+                URL url = new URL("http://" + ip + "/CommsServerConsultas/rest/usuarios/crearmd?ua=" + idUsuario1 + "&ub=" + idUsuario2);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+
+                int responseCode = conn.getResponseCode();
+                if (responseCode != HttpURLConnection.HTTP_OK) {
+                    errorMsg = "Error del servidor: " + responseCode;
+                }
+
+            } catch (Exception e) {
+                Log.e("Login", "Error en crearMD", e);
+                errorMsg = e.getMessage() != null ? e.getMessage() : "Error desconocido";
+            }
+
+
+            final String error = errorMsg;
+
+            new Handler(Looper.getMainLooper()).post(() -> {
+                if (error == null) {
+                    callback.onLoginSuccess();
+                } else {
+                    callback.onLoginFailure(error);
+                }
+            });
+        }).start();
+    }
+
+
 
     public interface MensajeEnviadoCallback {
         void onSuccess();

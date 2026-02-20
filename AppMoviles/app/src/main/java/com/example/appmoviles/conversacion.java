@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -19,11 +18,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.appmoviles.ui.home.AdaptadorChats;
 
 import java.util.ArrayList;
 
@@ -36,6 +32,7 @@ public class conversacion extends AppCompatActivity {
     RecyclerView.LayoutManager miLayoutManager;
     ArrayList<Mensaje> msgs;
     ImageButton enviar;
+    int idUsuario;
     EditText etMensaje;
 
     @Override
@@ -53,7 +50,7 @@ public class conversacion extends AppCompatActivity {
 
 
 
-        int idUsuario = pretexto.getIntExtra("usuario", -1);
+        idUsuario = pretexto.getIntExtra("usuario", -1);
         Chat chat = (Chat) pretexto.getSerializableExtra("chat");
         Boolean isPrivado = pretexto.getBooleanExtra("isPrivado", false);
 
@@ -108,7 +105,7 @@ public class conversacion extends AppCompatActivity {
     }
 
     public void actualizarMensajes(Chat chat, Boolean isPrivado, ArrayList<Mensaje> msgs){
-        ApiRest.getMsgs(chat.getId(), isPrivado,new MsgsCallback() {
+        ApiRest.getMsgs(chat.getId(),idUsuario, isPrivado,new MsgsCallback() {
             @Override
             public void onLoginSuccess(ArrayList<Mensaje> mensajes) {
 
@@ -119,7 +116,9 @@ public class conversacion extends AppCompatActivity {
 
 
                 miAdaptador.notifyDataSetChanged();
-                rv.smoothScrollToPosition(msgs.size() - 1);
+                if (!msgs.isEmpty()){
+                    rv.smoothScrollToPosition(msgs.size() - 1);
+                }
             }
             @Override
             public void onLoginFailure(String errorMessage) {

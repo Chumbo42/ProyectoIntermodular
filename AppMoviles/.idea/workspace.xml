@@ -20,6 +20,11 @@
           <theme>@style/Theme.AppMoviles</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_confirmar_add_privado.xml">
+        <config>
+          <theme>@style/Theme.AppMoviles</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_conversacion.xml">
         <config>
           <theme>@style/Theme.AppMoviles</theme>
@@ -50,17 +55,17 @@
           <theme>@style/Theme.AppMoviles</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_dashboard.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_actividades.xml">
         <config>
           <theme>@style/Theme.AppMoviles</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_chats.xml">
         <config>
           <theme>@style/Theme.AppMoviles</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_notifications.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_usuario.xml">
         <config>
           <theme>@style/Theme.AppMoviles</theme>
         </config>
@@ -76,6 +81,11 @@
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/menu/bottom_nav_menu.xml">
+        <config>
+          <theme>@style/Theme.AppMoviles</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/menu/toolbar_chat.xml">
         <config>
           <theme>@style/Theme.AppMoviles</theme>
         </config>
@@ -97,19 +107,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b49e7957-674e-407f-9b53-22c1b59689a0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/AdaptadorAddPrivado.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/img_usuario.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/celda_add_privado.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/CrearMdCallback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/confirmarAddPrivado.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_confirmar_add_privado.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/AdaptadorAddPrivado.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/AdaptadorAddPrivado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/AdaptadorMensajes.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/AdaptadorMensajes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/ApiRest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/ApiRest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/DatosUsuarioLogueado.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/DatosUsuarioLogueado.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/LogIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/LogIn.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/Principal.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/Principal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/add.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/add.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/add_privado.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/add_privado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/ui/home/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/ui/home/HomeFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/conversacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/conversacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/ui/dashboard/DashboardFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/ui/actividades/ActividadesFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/ui/home/AdaptadorChats.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/ui/chats/AdaptadorChats.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/ui/home/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/ui/chats/ChatsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/ui/notifications/NotificationsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/ui/usuario/UsuarioFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_actividades_black_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_notifications_black_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_usuario_black_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_settings_black.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_privado.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_privado.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/celda_add_privado.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/celda_add_privado.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_dashboard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_actividades.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_chats.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_notifications.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_usuario.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/bottom_nav_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/bottom_nav_menu.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/toolbar_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/toolbar_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/mobile_navigation.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/mobile_navigation.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/src/main/java/ejem1/GestionaUsuarios.java" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/src/main/java/ejem1/GestionaUsuarios.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas.war" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/GestionaUsuarios$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/GestionaUsuarios$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/GestionaUsuarios$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/GestionaUsuarios$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/GestionaUsuarios.class" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/GestionaUsuarios.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/target/classes/ejem1/GestionaUsuarios$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/classes/ejem1/GestionaUsuarios$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/target/classes/ejem1/GestionaUsuarios$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/classes/ejem1/GestionaUsuarios$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/target/classes/ejem1/GestionaUsuarios$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/classes/ejem1/GestionaUsuarios$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/target/classes/ejem1/GestionaUsuarios.class" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/classes/ejem1/GestionaUsuarios.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -129,10 +163,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="resourceFile" />
         <option value="layoutResourceFile" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>

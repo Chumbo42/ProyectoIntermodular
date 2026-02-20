@@ -7,18 +7,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class DatosUsuarioLogueado extends ViewModel {
     private MutableLiveData<Integer> userId = new MutableLiveData<>();
-    private MutableLiveData<RecyclerView> rvChats = new MutableLiveData<>() ;
+    private MutableLiveData<Usuario> usuario = new MutableLiveData<>();
     public void setUserId(int id) {
         userId.setValue(id);
     }
     public LiveData<Integer> getUserId() {
         return userId;
     }
-    public void setRvChats(RecyclerView rv){
-        rvChats.setValue(rv);
+    public void setUsuario(Usuario u){
+        usuario.setValue(u);
     }
-    public LiveData<RecyclerView> getRvChats(){
-        return rvChats;
+    public LiveData<Usuario> getUsuario(){
+        return usuario;
     }
 
 
