@@ -26,14 +26,15 @@ public class AdaptadorChats extends RecyclerView.Adapter<AdaptadorChats.MyViewHo
 
     int selectedPos = RecyclerView.NO_POSITION;
     int usuario;
+    int idUsuario;
     ArrayList<Chat> chats;
     Context contexto;
 
-    public AdaptadorChats(ArrayList<Chat> chats, Context contexto, int usuario)
+    public AdaptadorChats(ArrayList<Chat> chats, Context contexto, int idUsuario)
     {
         this.chats = chats;
         this.contexto = contexto;
-        this.usuario = usuario;
+        this.idUsuario = idUsuario;
     }
 
     @NonNull
@@ -99,8 +100,9 @@ public class AdaptadorChats extends RecyclerView.Adapter<AdaptadorChats.MyViewHo
                     // Si hay una posición marcada se muestra un Toast
                     if (selectedPos > RecyclerView.NO_POSITION) {
                         Intent intent = new Intent(contexto, conversacion.class);
-                        intent.putExtra("usuario", usuario);
+                        intent.putExtra("usuario", idUsuario);
                         intent.putExtra("chat",chats.get(posPulsada));
+                        intent.putExtra("isPrivado",chats.get(posPulsada).getPrivado());
                         contexto.startActivity(intent);
 
                     }

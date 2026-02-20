@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('msgprivado', function (Blueprint $table) {
             $table->id();
             $table->foreignId('autor')->constrained('usuarios')->onDelete('cascade');
+            $table->foreignId('conversacion')->constrained('privados')->onDelete('cascade');
             $table->string('contenido');
             $table->date("fecha");
             $table->timestamps();

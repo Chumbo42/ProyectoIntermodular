@@ -19,6 +19,14 @@
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
+  <distributionManagement>
+    <repository>
+    <id>internal.repo</id>
+    <name>Internal repo</name>
+    <url>file:// C:\Users\amigu\.rsp\redhat-community-server-connector\runtimes\installations\tomcat-10.0.27\apache-tomcat-10.0.27\webapps</url>
+    </repository>
+  </distributionManagement>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>

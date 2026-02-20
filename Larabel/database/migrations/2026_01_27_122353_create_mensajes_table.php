@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("contenido");
             $table->date("fecha");
-            $table->foreignId('id_usuario')->constrained('usuarios')->onDelete('cascade');
+            $table->foreignId('autor')->constrained('usuarios')->onDelete('cascade');
             $table->foreignId('id_grupo')->constrained('grupos')->onDelete('cascade');
             $table->timestamps();
         });

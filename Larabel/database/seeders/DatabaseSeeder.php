@@ -68,7 +68,7 @@ class DatabaseSeeder extends Seeder
             [
                 'contenido'=> "Yo no los hice",
                 'fecha'=>now(),
-                'id_usuario'=>'2',
+                'autor'=>'2',
                 'id_grupo'=>'1',
                 'created_at'=>now(),
                 'updated_at'=>now()
@@ -92,7 +92,28 @@ class DatabaseSeeder extends Seeder
                 'updated_at'=>now()
             ]
         );
+        DB::table('privados')->insert(
+            [
+                'usuario1'=>'1',
+                'usuario2'=>'3',
+            ]
+        );
+        DB::table('usuarios-grupos')->insert(
+            [
+                'id_usuario'=>'1',
+                'id_grupo'=>'1',
+            ]
+        );
 
+        DB::table('msgprivado')->insert(
+            [
+                'autor'=>'3',
+                'conversacion'=>'1',
+                'contenido'=>'Buenos dias Iago',
+                'fecha'=>now(),
+                
+            ]
+        );
 
     }
 }

@@ -5,6 +5,26 @@
       <config />
     </shared>
     <layouts>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add.xml">
+        <config>
+          <theme>@style/Theme.AppMoviles</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_grupo.xml">
+        <config>
+          <theme>@style/Theme.AppMoviles</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_privado.xml">
+        <config>
+          <theme>@style/Theme.AppMoviles</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_conversacion.xml">
+        <config>
+          <theme>@style/Theme.AppMoviles</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_crear_cuenta.xml">
         <config>
           <theme>@style/Theme.AppMoviles</theme>
@@ -40,6 +60,16 @@
           <theme>@style/Theme.AppMoviles</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/mensaje_otro.xml">
+        <config>
+          <theme>@style/Theme.AppMoviles</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/mensaje_propio.xml">
+        <config>
+          <theme>@style/Theme.AppMoviles</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/menu/bottom_nav_menu.xml">
         <config>
           <theme>@style/Theme.AppMoviles</theme>
@@ -62,22 +92,51 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b49e7957-674e-407f-9b53-22c1b59689a0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/ChatsCallback.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/conversacion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/ui/home/AdaptadorChats.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_conversacion.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/AdaptadorMensajes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/Mensaje.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/MsgsCallback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/add.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/add_grupo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/add_privado.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_add.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_add_grupo.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_add_persona.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_mandar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/img_border.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/msg_back.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_add.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_grupo.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_privado.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/mensaje_otro.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/mensaje_propio.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/ApiRest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/ApiRest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/Chat.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/Chat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/CrearCuenta.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/CrearCuenta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/Principal.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/Principal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/conversacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/conversacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/ui/home/AdaptadorChats.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/ui/home/AdaptadorChats.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/ui/home/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appmoviles/ui/home/HomeFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/comms_logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/comms_logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_conversacion.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_conversacion.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_dashboard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_dashboard.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_notifications.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_notifications.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/src/main/java/ejem1/GestionaUsuarios.java" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/src/main/java/ejem1/GestionaUsuarios.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas.war" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/Chat.class" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/Chat.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/GestionaUsuarios$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/GestionaUsuarios$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/GestionaUsuarios.class" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/GestionaUsuarios.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/CommsServerConsultas/WEB-INF/classes/ejem1/Usuario.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/target/classes/ejem1/GestionaUsuarios$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/classes/ejem1/GestionaUsuarios$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/target/classes/ejem1/GestionaUsuarios.class" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/classes/ejem1/GestionaUsuarios.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/target/classes/ejem1/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/classes/ejem1/Usuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../CommsServerConsultas/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../CommsServerConsultas/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -88,7 +147,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\amigvaz\.android\avd\Pixel_5_API_24.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\amigu\.android\avd\Pixel_5_API_24.avd)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -97,15 +156,18 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="layoutResourceFile" />
-        <option value="resourceFile" />
         <option value="Interface" />
+        <option value="layoutResourceFile" />
         <option value="Class" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -117,24 +179,29 @@
     <option name="openDirectoriesWithSingleClick" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Android App.app.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "com.google.services.firebase.aqiPopupShown": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/amigvaz/proyecto_intermodular/AppMoviles"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/0000 - Vivas/Intermodular/ProyectoIntermodular/AppMoviles/app/src/main/res/drawable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\0000 - Vivas\Intermodular\ProyectoIntermodular\AppMoviles\app\src\main\res\drawable" />
       <recent name="C:\Users\amigvaz\Desktop\Android\AndroidStudioProjects\AppMoviles2\app\src\main\res\layout" />
       <recent name="C:\Users\amigvaz\Desktop\Android\AndroidStudioProjects\AppMoviles2\app\src\main\res\drawable" />
+    </key>
+    <key name="android.template.-855355480">
+      <recent name="com.example.appmoviles" />
+      <recent name="com.example.appmoviles.ui" />
     </key>
     <key name="android.template.1141203171">
       <recent name="com.example.appmoviles" />
@@ -142,8 +209,14 @@
     <key name="android.template.-1561254194">
       <recent name="com.example.appmoviles" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\0000 - Vivas\Intermodular\ProyectoIntermodular\AppMoviles\app\src\main\res\drawable" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.appmoviles" />
       <recent name="com.example.appmoviles.ui" />
+    </key>
+    <key name="android.template.-1102983703">
       <recent name="com.example.appmoviles" />
     </key>
   </component>

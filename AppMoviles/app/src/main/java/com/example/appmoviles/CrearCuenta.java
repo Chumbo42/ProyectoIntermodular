@@ -55,10 +55,10 @@ public class CrearCuenta extends AppCompatActivity {
                 int i = 0;
                 boolean libre = ApiRest.usuarioLibre(etNewName.getText().toString());
 
-                if (etNewPass.getText().toString().equals(etRepPass.getText().toString())){
+                if (etNewPass.getText().toString().trim().equals(etRepPass.getText().toString().trim()) && !etNewName.getText().toString().isEmpty() && !etNewPass.getText().toString().isEmpty()){
                     if (libre){
 
-                        Usuario n = new Usuario(etNewName.getText().toString(), etNewPass.getText().toString());
+                        Usuario n = new Usuario(etNewName.getText().toString().trim(), etNewPass.getText().toString().trim());
                         Intent result = new Intent();
                         result.putExtra("usuarioNuevo", n);
                         setResult(RESULT_OK,result);

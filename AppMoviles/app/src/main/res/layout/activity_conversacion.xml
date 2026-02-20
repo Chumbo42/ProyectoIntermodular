@@ -21,7 +21,7 @@
         app:titleTextColor="@color/white" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/etMensaje"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#FFFFFF"
@@ -31,17 +31,31 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#454545"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintEnd_toStartOf="@+id/btEnviar"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/btEnviar"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#00FFFFFF"
+        android:background="@drawable/button_border"
+        android:backgroundTint="@color/morado"
+        android:tint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editTextText"
-        app:layout_constraintTop_toTopOf="@+id/editTextText"
-        app:srcCompat="@android:drawable/ic_menu_send" />
+        app:layout_constraintStart_toEndOf="@+id/etMensaje"
+        app:layout_constraintTop_toTopOf="@+id/etMensaje"
+        app:srcCompat="@drawable/ic_mandar" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMensajes"
+        android:layout_width="409dp"
+        android:layout_height="620dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="#2F2F2F"
+        app:layout_constraintBottom_toTopOf="@+id/etMensaje"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

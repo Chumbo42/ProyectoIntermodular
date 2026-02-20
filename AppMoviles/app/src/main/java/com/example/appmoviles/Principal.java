@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -32,6 +34,7 @@ public class Principal extends AppCompatActivity {
 
    Toolbar tb;
    ActionBar ab;
+   ImageButton ibAdd;
 
     private ActivityPrincipalBinding binding;
 
@@ -75,7 +78,15 @@ public class Principal extends AppCompatActivity {
         ab = getSupportActionBar();
         ab.setTitle("Comms");
 
+        ibAdd = findViewById(R.id.ibAdd);
 
+        ibAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), add.class);
+                startActivity(intent);
+            }
+        });
 
 
     }

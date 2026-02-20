@@ -16,7 +16,11 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
@@ -25,11 +29,14 @@ import java.util.concurrent.Future;
 
 public class ApiRest {
 
+    static final String ip = android.os.Build.FINGERPRINT.contains("generic")
+            ? "10.0.2.2:8080"        // Emulador
+            : "192.168.1.209:8080";  // Teléfono físico
     public static void subirUsuario(Usuario u, LoginCallback callback){
         new Thread(() -> {
             String errorMsg = null;
             try {
-                URL url = new URL("http://10.0.2.2:8080/CommsServerConsultas/rest/usuarios/registrar");
+                URL url = new URL("http://" + ip + "/CommsServerConsultas/rest/usuarios/registrar");
                 HttpURLConnection con = (HttpURLConnection) url.openConnection();
                 con.setRequestMethod("POST");
                 con.setRequestProperty("Content-Type", "application/json");
@@ -75,7 +82,7 @@ public class ApiRest {
             String errorMsg = null;
 
             try {
-                URL url = new URL("http://10.0.2.2:8080/CommsServerConsultas/rest/usuarios/login?nombre="
+                URL url = new URL("http://" + ip + "/CommsServerConsultas/rest/usuarios/login?nombre="
                         + username + "&contra=" + contra);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
@@ -134,7 +141,7 @@ public class ApiRest {
 
     public static boolean usuarioLibre(String username) {
         try {
-            URL url = new URL("http://10.0.2.2:8080/CommsServerConsultas/rest/usuarios/nombres/nombre=" + username);
+            URL url = new URL("http://" + ip + "/CommsServerConsultas/rest/usuarios/nombres/nombre=" + username);
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -173,7 +180,7 @@ public class ApiRest {
             String errorMsg = null;
 
             try {
-                URL url = new URL("http://10.0.2.2:8080/CommsServerConsultas/rest/usuarios/chats?id=" + id );
+                URL url = new URL("http://" + ip + "/CommsServerConsultas/rest/usuarios/chats?id=" + id );
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
                 conn.setRequestProperty("Accept", "application/json");
@@ -234,6 +241,125 @@ public class ApiRest {
 
         }).start();
         return null;
+    }
+
+    public static ArrayList<Mensaje> getMsgs(int id, boolean isPrivado, MsgsCallback callback) {
+        new Thread(() -> {
+            ArrayList<Mensaje> mensajes = new ArrayList<>();
+            String errorMsg = null;
+
+            try {
+                URL url = new URL("http://" + ip + "/CommsServerConsultas/rest/usuarios/mensajes?id=" + id + "&privado=" + isPrivado);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setRequestProperty("Accept", "application/json");
+
+                int responseCode = conn.getResponseCode();
+                if (responseCode != HttpURLConnection.HTTP_OK) {
+                    if (responseCode != HttpURLConnection.HTTP_NOT_FOUND) {
+                        errorMsg = "Error del servidor: " + responseCode;
+                    } else {
+                        errorMsg = "No se encontraron mensajes";
+                    }
+                } else {
+                    InputStream stream = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
+
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        response.append(line.trim());
+                    }
+
+                    reader.close();
+                    conn.disconnect();
+
+                    JSONArray jsonArray = new JSONArray(response.toString());
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject obj = jsonArray.getJSONObject(i);
+
+                        int idMensaje = obj.getInt("id");
+                        int autor = obj.getInt("autor");
+                        String contenido = obj.getString("contenido");
+                        String fechaStr = obj.getString("fecha");
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.getDefault());
+                        Date fecha = sdf.parse(fechaStr);
+
+                        mensajes.add(new Mensaje(idMensaje, autor, contenido, fecha));
+                    }
+
+                    Log.d("API", "Respuesta del servidor: " + response.toString());
+                }
+
+            } catch (Exception e) {
+                Log.e("getMsgs", "Error al obtener mensajes", e);
+                errorMsg = e.getMessage() != null ? e.getMessage() : "Error desconocido";
+            }
+
+            final String error = errorMsg;
+
+            new Handler(Looper.getMainLooper()).post(() -> {
+                if (error == null) {
+                    callback.onLoginSuccess(mensajes);
+                } else {
+                    callback.onLoginFailure(error);
+                }
+            });
+
+
+
+        }).start();
+        return null;
+    }
+
+    public static void enviarMensaje(int conversacionId, int autor, String contenido, boolean isPrivado, MensajeEnviadoCallback callback) {
+        new Thread(() -> {
+            String errorMsg = null;
+
+            try {
+                URL url = new URL("http://" + ip + "/CommsServerConsultas/rest/usuarios/enviar?conversacion=" + conversacionId + "&privado=" + isPrivado + "&autor=" + autor);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Content-Type", "application/json");
+                conn.setDoOutput(true);
+
+                // Crear JSON del mensaje
+                JSONObject mensaje = new JSONObject();
+                mensaje.put("contenido", contenido);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.getDefault());
+                mensaje.put("fecha", sdf.format(new Date()));
+
+                OutputStream os = conn.getOutputStream();
+                os.write(mensaje.toString().getBytes());
+                os.flush();
+                os.close();
+
+                int responseCode = conn.getResponseCode();
+                if (responseCode != HttpURLConnection.HTTP_OK) {
+                    errorMsg = "Error al enviar: " + responseCode;
+                }
+
+            } catch (Exception e) {
+                Log.e("enviarMensaje", "Error", e);
+                errorMsg = e.getMessage();
+            }
+
+            final String error = errorMsg;
+            new Handler(Looper.getMainLooper()).post(() -> {
+                if (error == null) {
+                    callback.onSuccess();
+                } else {
+                    callback.onFailure(error);
+                }
+            });
+
+        }).start();
+    }
+
+    public interface MensajeEnviadoCallback {
+        void onSuccess();
+        void onFailure(String error);
     }
 
 

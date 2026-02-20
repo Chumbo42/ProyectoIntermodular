@@ -38,14 +38,16 @@ public class HomeFragment extends Fragment {
         rv = binding.rvChats;
 
         chats = new ArrayList<>();
-        miAdaptador = new AdaptadorChats(chats, this.getContext(),idUsuario);
-        miLayoutManager = new GridLayoutManager(this.getContext(), 1);
-        rv.setAdapter(miAdaptador);
-        rv.setLayoutManager(miLayoutManager);
+
 
         DatosUsuarioLogueado viewModel = new ViewModelProvider(requireActivity()).get(DatosUsuarioLogueado.class);
         viewModel.getUserId().observe(getViewLifecycleOwner(), idUsuario -> {
             this.idUsuario = idUsuario;
+
+            miAdaptador = new AdaptadorChats(chats, this.getContext(),idUsuario);
+            miLayoutManager = new GridLayoutManager(this.getContext(), 1);
+            rv.setAdapter(miAdaptador);
+            rv.setLayoutManager(miLayoutManager);
 
             ApiRest.getChats(idUsuario, new ChatsCallback() {
                 @Override
