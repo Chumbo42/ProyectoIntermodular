@@ -1,6 +1,9 @@
 package com.example.appmoviles;
 
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -9,6 +12,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -16,7 +21,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.sql.Timestamp;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -75,7 +80,7 @@ public class ApiRest {
     }
 
 
-    public static void obtenerUsuario(String username, String contra, LoginCallback callback) {
+    public static void obtenerUsuario(String username, String contra,Context contexto, LoginCallback callback) {
         // Ejecutar en hilo secundario
         new Thread(() -> {
             Usuario u = null;
@@ -114,7 +119,15 @@ public class ApiRest {
                     String nom = obj.getString("nombre");
                     int id = Integer.parseInt(obj.getString("id"));
                     String correo = obj.getString("correo");
-                    byte[] foto = obj.getString("imagen").getBytes();
+                    byte[] foto;
+                    try{
+                        foto = obj.optString("foto",null).getBytes();
+                    }catch (NullPointerException e){
+                        Bitmap bitmap = BitmapFactory.decodeResource(contexto.getResources(),R.drawable.img_usuario);
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+                        foto = baos.toByteArray();
+                    }
 
                     u = new Usuario(id, username, contra, correo, foto);
                 }
@@ -173,7 +186,7 @@ public class ApiRest {
         return true; // si hay error
     }
 
-    public static ArrayList<Chat> getChats(int id, ChatsCallback callback) {
+    public static ArrayList<Chat> getChats(int id, Context contexto, ChatsCallback callback) {
         // Ejecutar en hilo secundario
         new Thread(() -> {
             ArrayList<Chat> chats = new ArrayList<Chat>();
@@ -213,8 +226,18 @@ public class ApiRest {
 
                         int idChat = obj.getInt("id");
                         String nom = obj.getString("nombre");
-                        byte[] foto = obj.getString("foto").getBytes();
+
                         Boolean privado = obj.getBoolean("privado");
+
+                        byte[] foto;
+                        try{
+                            foto = obj.optString("foto",null).getBytes();
+                        }catch (NullPointerException e){
+                            Bitmap bitmap = BitmapFactory.decodeResource(contexto.getResources(),R.drawable.img_usuario);
+                            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+                            foto = baos.toByteArray();
+                        }
 
 
                         chats.add(new Chat(idChat, nom, foto, privado));

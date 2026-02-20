@@ -1,10 +1,12 @@
 package com.example.appmoviles.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +20,7 @@ import com.example.appmoviles.Chat;
 import com.example.appmoviles.ChatsCallback;
 import com.example.appmoviles.DatosUsuarioLogueado;
 import com.example.appmoviles.R;
+import com.example.appmoviles.add;
 import com.example.appmoviles.databinding.FragmentHomeBinding;
 
 import java.util.ArrayList;
@@ -31,8 +34,10 @@ public class HomeFragment extends Fragment {
     RecyclerView.LayoutManager miLayoutManager;
     private FragmentHomeBinding binding;
 
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    ImageButton ibAdd;
 
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+     
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         rv = binding.rvChats;
@@ -49,7 +54,7 @@ public class HomeFragment extends Fragment {
             rv.setAdapter(miAdaptador);
             rv.setLayoutManager(miLayoutManager);
 
-            ApiRest.getChats(idUsuario, new ChatsCallback() {
+            ApiRest.getChats(idUsuario, this.getContext(), new ChatsCallback() {
                 @Override
                 public void onLoginSuccess(ArrayList<Chat> chat) {
                     Log.i("Chats","Hay " + chats.size() + " chats");
@@ -68,6 +73,17 @@ public class HomeFragment extends Fragment {
             });
         });
         Log.d("HomeFragment", "Llamada a getMensajes ejecutada");
+
+        ibAdd = binding.ibAdd;
+
+        ibAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("HomeFragment", "Llamada a add ejecutada");
+                Intent intent = new Intent(getContext(), add.class);
+                startActivity(intent);
+            }
+        });
 
         return root;
     }

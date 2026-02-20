@@ -62,6 +62,31 @@ public class GestionaUsuarios {
         return lista;
     }
 
+    public ArrayList<Usuario> getUsuarios(String nombre) {
+        ArrayList<Usuario> lista = new ArrayList<>();
+
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+
+        } catch (Exception e) {
+            return null;
+        }
+
+        try (Connection conexion = DriverManager.getConnection(URL, USER, PASS);
+                Statement st = conexion.createStatement();
+                ResultSet rs = st.executeQuery("Select * from intermodular.usuarios WHERE nombre LIKE " + nombre + "%");) {
+            while (rs.next()) {
+                lista.add(new Usuario(rs.getInt("id"), rs.getString("nombre"), rs.getString("correo"),
+                        rs.getString("contraseña"), rs.getBytes("foto")));
+
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
+        return lista;
+    }
+
     public int subirUsuario(String nombre, String contraseña) {
 
         try {
@@ -219,6 +244,19 @@ public class GestionaUsuarios {
     public Response obtenerTodos() {
 
         GenericEntity<List<Usuario>> entity = new GenericEntity<List<Usuario>>(getUsuarios()) {
+        };
+        Response response = Response.ok(entity).build();
+
+        return response;
+
+    }
+
+    @GET
+    @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+    @Path("/pornombre")
+    public Response obtenerPorNombre(@QueryParam("nombre") String nombre) {
+
+        GenericEntity<List<Usuario>> entity = new GenericEntity<List<Usuario>>(getUsuarios(nombre)) {
         };
         Response response = Response.ok(entity).build();
 

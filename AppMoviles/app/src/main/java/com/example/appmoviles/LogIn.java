@@ -99,7 +99,7 @@ public class LogIn extends AppCompatActivity {
 
 
 
-               ApiRest.obtenerUsuario(username, password, new LoginCallback() {
+               ApiRest.obtenerUsuario(username, password, getApplicationContext(),new LoginCallback() {
                    @Override
                    public void onLoginSuccess(Usuario usuario) {
 
