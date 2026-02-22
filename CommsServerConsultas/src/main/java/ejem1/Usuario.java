@@ -10,7 +10,7 @@ public class Usuario {
 	private String nombre;
 	private String correo;
 	private String contraseña;
-	private byte[] imagen;
+	private byte[] foto;
 	
 	public Usuario() {
 		
@@ -22,7 +22,7 @@ public class Usuario {
 		this.nombre = nombre;
 		this.correo = correo;
 		this.contraseña = contraseña;
-		this.imagen = imagen;
+		this.foto = imagen;
 	}
 	
 	@XmlElement
@@ -54,10 +54,10 @@ public class Usuario {
 		this.correo = correo;
 	}
     @XmlElement
-	public byte[] getImagen() {
-		return imagen;
+	public byte[] getFoto() {
+		return foto;
 	}
 	public void setGenero(byte[] imagen) {
-		this.imagen = imagen;
+		this.foto = imagen;
     }
 }

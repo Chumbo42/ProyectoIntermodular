@@ -2,6 +2,7 @@ package com.example.appmoviles;
 
 import static java.util.Base64.*;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -29,12 +30,13 @@ public class AdaptadorAddPrivado extends RecyclerView.Adapter<AdaptadorAddPrivad
     int idUsuario;
     ArrayList<Chat> chats;
     Context contexto;
-
-    public AdaptadorAddPrivado(ArrayList<Chat> chats, Context contexto, int id)
+    Usuario usuario;
+    public AdaptadorAddPrivado(ArrayList<Chat> chats, Context contexto, int id, Usuario u)
     {
         this.chats = chats;
         this.contexto = contexto;
         idUsuario=id;
+        this.usuario = u;
     }
 
     @NonNull
@@ -103,6 +105,7 @@ public class AdaptadorAddPrivado extends RecyclerView.Adapter<AdaptadorAddPrivad
                     Intent i = new Intent(contexto, confirmarAddPrivado.class);
                     i.putExtra("chat", chats.get(getAdapterPosition()));
                     i.putExtra("idUsuario",idUsuario);
+                    i.putExtra("usuario",usuario);
                     contexto.startActivity(i);
                 }
             });

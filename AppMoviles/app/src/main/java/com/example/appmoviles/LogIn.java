@@ -105,6 +105,7 @@ public class LogIn extends AppCompatActivity {
 
                        Intent intent = new Intent(getApplicationContext(), Principal.class);
                        intent.putExtra("usuario", usuario);
+                       intent.putExtra("idUsuario", usuario.getId());
                        startActivity(intent);
                        finish();
                    }

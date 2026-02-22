@@ -33,7 +33,7 @@ public class confirmarAddPrivado extends AppCompatActivity {
     int idUsuario;
     Chat chat;
     ImageView iv;
-
+    Usuario usuario;
 
     ArrayList<Chat> chats = new ArrayList<>();
 
@@ -50,6 +50,7 @@ public class confirmarAddPrivado extends AppCompatActivity {
 
         Intent pre = getIntent();
         idUsuario = pre.getIntExtra("idUsuario", -1);
+        usuario = (Usuario) pre.getSerializableExtra("usuario");
         chat = (Chat) pre.getSerializableExtra("chat");
         Log.i("IDU", idUsuario + "");
         Log.i("CID", chat.getId() + "");
@@ -64,6 +65,8 @@ public class confirmarAddPrivado extends AppCompatActivity {
         tv.setText(tv.getText() + chat.getNombre() + "?");
 
         iv = findViewById(R.id.ivConfirmarPriv);
+
+
         if(chat.getFoto() != null && !chat.getFoto().toString().trim().equals("") ){
 
             String stringImagen = new String(chat.getFoto());
@@ -84,9 +87,9 @@ public class confirmarAddPrivado extends AppCompatActivity {
                 ApiRest.crearPrivado(idUsuario, chat.getId(), new CrearMdCallback() {
                     @Override
                     public void onLoginSuccess() {
-                        Toast.makeText(getApplicationContext(),"Se ha añadido a " + chat.getNombre(), Toast.LENGTH_LONG);
                         Intent i = new Intent(getApplicationContext(), Principal.class);
                         i.putExtra("idUsuario", idUsuario);
+                        i.putExtra("usuario",usuario);
                         startActivity(i);
                         finish();
                     }

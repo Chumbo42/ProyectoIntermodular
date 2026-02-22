@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appmoviles.Chat;
 import com.example.appmoviles.R;
+import com.example.appmoviles.Usuario;
 import com.example.appmoviles.conversacion;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class AdaptadorChats extends RecyclerView.Adapter<AdaptadorChats.MyViewHo
     int idUsuario;
     ArrayList<Chat> chats;
     Context contexto;
+    Usuario usuario;
 
     public AdaptadorChats(ArrayList<Chat> chats, Context contexto, int idUsuario)
     {

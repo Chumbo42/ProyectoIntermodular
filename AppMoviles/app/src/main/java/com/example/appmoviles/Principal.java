@@ -56,11 +56,23 @@ public class Principal extends AppCompatActivity {
 
         RecyclerView rv = findViewById(R.id.rvChats);
 
-        Intent i = getIntent();
-        Usuario u = (Usuario) i.getSerializableExtra("usuario");
-        int id = u.getId();
+        Usuario u;
 
         DatosUsuarioLogueado viewModel = new ViewModelProvider(this).get(DatosUsuarioLogueado.class);
+
+        Intent i = getIntent();
+        int id = i.getIntExtra("idUsuario",-1);
+        if (i.hasExtra("usuario")){
+
+            u = (Usuario) i.getSerializableExtra("usuario");
+        } else {
+            u = viewModel.getUsuario().getValue();
+        }
+
+        Log.i("NOMBRE", u.getNombre());
+
+
+
         viewModel.setUserId(id);
         viewModel.setUsuario(u);
 

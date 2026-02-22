@@ -33,6 +33,7 @@ public class add_privado extends AppCompatActivity {
     RecyclerView.LayoutManager miLayoutManager;
 
     ArrayList<Chat> chats = new ArrayList<>();
+    Usuario usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class add_privado extends AppCompatActivity {
 
         Intent pre = getIntent();
         idUsuario = pre.getIntExtra("idUsuario", -1);
+        usuario = (Usuario) pre.getSerializableExtra("usuario");
 
         et = findViewById(R.id.etAddPrivado);
 
@@ -58,7 +60,7 @@ public class add_privado extends AppCompatActivity {
 
         rv = findViewById(R.id.rvAddPrivado);
 
-        miAdaptador = new AdaptadorAddPrivado(chats, getApplicationContext(), idUsuario);
+        miAdaptador = new AdaptadorAddPrivado(chats, getApplicationContext(), idUsuario, usuario);
         miLayoutManager = new GridLayoutManager(getApplicationContext(), 1);
         rv.setAdapter(miAdaptador);
         rv.setLayoutManager(miLayoutManager);

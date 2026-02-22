@@ -22,6 +22,7 @@ public class add extends AppCompatActivity {
 
     Toolbar tb;
     ActionBar ab;
+    Usuario usuario;
     Button addPrivado;
     Button addGrupo;
 
@@ -38,6 +39,7 @@ public class add extends AppCompatActivity {
 
         Intent pre = getIntent();
         idUsuario = pre.getIntExtra("idUsuario", -1);
+        usuario = (Usuario) pre.getSerializableExtra("usuario");
         Log.i("ID", "idUsuario: " + idUsuario);
 
         tb = findViewById(R.id.tbAdd);
@@ -54,6 +56,7 @@ public class add extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(), add_privado.class);
                 i.putExtra("idUsuario",idUsuario);
+                i.putExtra("usuario",usuario);
                 startActivity(i);
                 finish();
             }
@@ -65,9 +68,10 @@ public class add extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(), add_grupo.class);
-                i.putExtra("idUsuario",idUsuario);
+
+                i.putExtra("idUsuario", idUsuario);
+                i.putExtra("usuario",usuario);
                 startActivity(i);
-                finish();
             }
         });
 

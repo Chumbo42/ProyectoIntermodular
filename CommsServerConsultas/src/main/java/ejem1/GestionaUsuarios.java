@@ -205,6 +205,8 @@ public class GestionaUsuarios {
                 "WHERE id_grupo = " +
                 id +
                 "";
+
+                System.out.println(consulta);
         try (
 
                 Connection conexion = DriverManager.getConnection(URL, USER, PASS);
@@ -374,6 +376,8 @@ public class GestionaUsuarios {
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Path("/chats")
     public Response ver(@QueryParam("id") int id) {
+
+
 
         ArrayList<Chat> chats = getChats(id);
         if (chats.isEmpty()) {

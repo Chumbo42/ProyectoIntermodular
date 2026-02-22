@@ -121,14 +121,15 @@ public class ApiRest {
                     String nom = obj.getString("nombre");
                     int id = Integer.parseInt(obj.getString("id"));
                     String correo = obj.getString("correo");
-                    byte[] foto;
-                    try{
-                        foto = obj.optString("foto",null).getBytes();
-                    }catch (NullPointerException e){
-                        Bitmap bitmap = BitmapFactory.decodeResource(contexto.getResources(),R.drawable.img_usuario);
-                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-                        foto = baos.toByteArray();
+
+
+               byte[] foto;
+
+                    String imgStr = obj.getString("foto");
+                    if (!imgStr.equals("")){
+                        foto = imgStr.getBytes();
+                    } else {
+                        foto = null;
                     }
 
                     u = new Usuario(id, username, contra, correo, foto);
@@ -498,7 +499,7 @@ public class ApiRest {
                         byte[] foto;
 
                         try {
-                            String imgStr = obj.getString("imagen");
+                            String imgStr = obj.getString("foto");
                             if (!imgStr.equals("")){
                                 foto = imgStr.getBytes();
                             } else {

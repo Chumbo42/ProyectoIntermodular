@@ -12,12 +12,14 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appmoviles.ApiRest;
 import com.example.appmoviles.Chat;
 import com.example.appmoviles.ChatsCallback;
 import com.example.appmoviles.DatosUsuarioLogueado;
+import com.example.appmoviles.Usuario;
 import com.example.appmoviles.add;
 import com.example.appmoviles.databinding.FragmentChatsBinding;
 
@@ -31,7 +33,6 @@ public class ChatsFragment extends Fragment {
     AdaptadorChats miAdaptador;
     RecyclerView.LayoutManager miLayoutManager;
     private FragmentChatsBinding binding;
-
     ImageButton ibAdd;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,51 +43,64 @@ public class ChatsFragment extends Fragment {
 
         chats = new ArrayList<>();
 
+        miAdaptador = new AdaptadorChats(chats,getContext(),idUsuario);
+        miLayoutManager = new LinearLayoutManager(getContext());
 
-        DatosUsuarioLogueado viewModel = new ViewModelProvider(requireActivity()).get(DatosUsuarioLogueado.class);
-        viewModel.getUserId().observe(getViewLifecycleOwner(), idUsuario -> {
-            this.idUsuario = idUsuario;
-
-        });
-
-
-        miAdaptador = new AdaptadorChats(chats, this.getContext(),idUsuario);
-        miLayoutManager = new GridLayoutManager(this.getContext(), 1);
         rv.setAdapter(miAdaptador);
         rv.setLayoutManager(miLayoutManager);
 
-        ApiRest.getChats(idUsuario, this.getContext(), new ChatsCallback() {
-            @Override
-            public void onLoginSuccess(ArrayList<Chat> chat) {
-                Log.i("Chats","Hay " + chats.size() + " chats");
-                chats.clear();
-                chats.addAll(chat);
 
-                miAdaptador.notifyDataSetChanged();
-            }
+        DatosUsuarioLogueado viewModel = new ViewModelProvider(requireActivity()).get(DatosUsuarioLogueado.class);
+        viewModel.getUserId().observe(getViewLifecycleOwner(), idUsuario-> {
+            this.idUsuario = idUsuario;
 
-            @Override
-            public void onLoginFailure(String errorMessage) {
-                Log.i("Chats","login failure");
-                chats.clear();
-                miAdaptador.notifyDataSetChanged();
-            }
+            ApiRest.getChats(idUsuario, this.getContext(), new ChatsCallback() {
+                @Override
+                public void onLoginSuccess(ArrayList<Chat> chat) {
+                    Log.i("Chats","Hay " + chats.size() + " chats");
+                    chats.clear();
+                    chats.addAll(chat);
+
+                    miAdaptador.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onLoginFailure(String errorMessage) {
+                    Log.i("Chats","login failure");
+                    chats.clear();
+                    miAdaptador.notifyDataSetChanged();
+                }
+            });
+
         });
-        Log.d("HomeFragment", "Llamada a getMensajes ejecutada");
+
+
+
+
+
+
 
         ibAdd = binding.ibAdd;
+        viewModel.getUsuario().observe(getViewLifecycleOwner(), usuario-> {
 
-        ibAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                Intent intent = new Intent(getContext(), add.class);
-                intent.putExtra("idUsuario",idUsuario);
-                startActivity(intent);
-            }
+            ibAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent intent = new Intent(getContext(), add.class);
+                    intent.putExtra("idUsuario", idUsuario);
+                    intent.putExtra("usuario", usuario);
+                    startActivity(intent);
+                    getActivity().finish();
+                }
+
+            });
         });
 
-        return root;
+            return root;
+
+
     }
 
     @Override
@@ -94,4 +108,5 @@ public class ChatsFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 }
