@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import androidx.activity.EdgeToEdge;
@@ -84,7 +83,7 @@ public class confirmarAddPrivado extends AppCompatActivity {
         btAcc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ApiRest.crearPrivado(idUsuario, chat.getId(), new CrearMdCallback() {
+                ApiRest.crearPrivado(idUsuario, chat.getId(), new VoidCallback() {
                     @Override
                     public void onLoginSuccess() {
                         Intent i = new Intent(getApplicationContext(), Principal.class);

@@ -16,6 +16,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".EditarCuenta"
+            android:exported="false" />
+        <activity
+            android:name=".confirmarAddGrupo"
+            android:exported="false" />
+        <activity
             android:name=".confirmarAddPrivado"
             android:exported="false"
             android:parentActivityName=".add_privado" />

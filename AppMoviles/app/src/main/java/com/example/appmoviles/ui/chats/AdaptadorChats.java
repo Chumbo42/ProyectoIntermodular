@@ -3,6 +3,7 @@ package com.example.appmoviles.ui.chats;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -103,9 +104,10 @@ public class AdaptadorChats extends RecyclerView.Adapter<AdaptadorChats.MyViewHo
                     // Si hay una posición marcada se muestra un Toast
                     if (selectedPos > RecyclerView.NO_POSITION) {
                         Intent intent = new Intent(contexto, conversacion.class);
-                        intent.putExtra("usuario", idUsuario);
+                        intent.putExtra("idUsuario", idUsuario);
+
+                        Log.i("INFO","IdUsuario en adaptador = " + idUsuario);
                         intent.putExtra("chat",chats.get(posPulsada));
-                        intent.putExtra("isPrivado",chats.get(posPulsada).getPrivado());
                         contexto.startActivity(intent);
 
 

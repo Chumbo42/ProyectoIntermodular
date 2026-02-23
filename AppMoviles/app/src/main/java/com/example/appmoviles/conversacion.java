@@ -50,9 +50,13 @@ public class conversacion extends AppCompatActivity {
 
 
 
-        idUsuario = pretexto.getIntExtra("usuario", -1);
+        idUsuario = pretexto.getIntExtra("idUsuario", -1);
         Chat chat = (Chat) pretexto.getSerializableExtra("chat");
-        Boolean isPrivado = pretexto.getBooleanExtra("isPrivado", false);
+
+        Log.i("info", chat.getNombre());
+        Log.i("info", chat.getId()+"");
+        Log.i("info", chat.getPrivado()+"");
+
 
         tb = findViewById(R.id.toolbar2);
         setSupportActionBar(tb);
@@ -64,7 +68,7 @@ public class conversacion extends AppCompatActivity {
         rv = findViewById(R.id.rvMensajes);
         msgs = new ArrayList<>();
 
-        miAdaptador = new AdaptadorMensajes(msgs, this, idUsuario);
+        miAdaptador = new AdaptadorMensajes(msgs, this, idUsuario, chat.getPrivado());
         miLayoutManager = new LinearLayoutManager(this);
 
         rv.setAdapter(miAdaptador);
@@ -74,7 +78,7 @@ public class conversacion extends AppCompatActivity {
 
 
 
-       actualizarMensajes(chat,isPrivado,msgs);
+       actualizarMensajes(chat,chat.getPrivado(),msgs);
 
 
         enviar.setOnClickListener(new View.OnClickListener() {
@@ -109,6 +113,8 @@ public class conversacion extends AppCompatActivity {
             @Override
             public void onLoginSuccess(ArrayList<Mensaje> mensajes) {
 
+
+                Log.i("Mensajes","isPrivado = " + isPrivado);
 
                 msgs.clear();
                 msgs.addAll(mensajes);

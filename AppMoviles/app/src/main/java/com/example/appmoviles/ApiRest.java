@@ -2,9 +2,6 @@ package com.example.appmoviles;
 
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -13,9 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 
-import java.io.Console;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -28,11 +23,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Objects;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 public class ApiRest {
 
@@ -281,6 +271,7 @@ public class ApiRest {
             if (isPrivado){
                 try {
                     URL url = new URL("http://" + ip + "/CommsServerConsultas/rest/usuarios/mensajespriv?idc=" + idChat + "&idu=" + idUsuario);
+                    Log.i("Url", url.toString());
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("GET");
                     conn.setRequestProperty("Accept", "application/json");
@@ -536,7 +527,7 @@ public class ApiRest {
         return null;
     }
 
-    public static void crearPrivado(int idUsuario1, int idUsuario2, CrearMdCallback callback){
+    public static void crearPrivado(int idUsuario1, int idUsuario2, VoidCallback callback){
         new Thread(() -> {
             String errorMsg = null;
             try {
@@ -567,7 +558,203 @@ public class ApiRest {
         }).start();
     }
 
+    public static void crearGrupo(String nombre, ArrayList<Chat> integrantes, int idCreador, VoidCallback callback) {
+        new Thread(() -> {
+            String errorMsg = null;
+            try {
+                URL url = new URL("http://" + ip + "/CommsServerConsultas/rest/usuarios/creargr?nombre=" + nombre);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
 
+                int responseCode = conn.getResponseCode();
+                if (responseCode != HttpURLConnection.HTTP_OK) {
+                    errorMsg = "Error del servidor: " + responseCode;
+                } else {
+                    InputStream stream = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        response.append(line.trim());
+                    }
+                    reader.close();
+                    conn.disconnect();
+
+                    int idGrupo = Integer.parseInt(response.toString());
+
+                    // Añadir creador e integrantes de forma síncrona dentro del hilo
+                    addUsuarioGrupoSync(idGrupo, idCreador);
+                    for (Chat c : integrantes) {
+                        addUsuarioGrupoSync(idGrupo, c.getId());
+                    }
+                }
+
+            } catch (Exception e) {
+                Log.e("crearGrupo", "Error", e);
+                errorMsg = e.getMessage() != null ? e.getMessage() : "Error desconocido";
+            }
+
+            final String error = errorMsg;
+            new Handler(Looper.getMainLooper()).post(() -> {
+                if (error == null) {
+                    callback.onLoginSuccess();
+                } else {
+                    callback.onLoginFailure(error);
+                }
+            });
+        }).start();
+    }
+
+    private static void addUsuarioGrupoSync(int idGrupo, int idUsuario) {
+        try {
+            URL url = new URL("http://" + ip + "/CommsServerConsultas/rest/usuarios/addUsuarioGrupo?idGrupo=" + idGrupo + "&idUsuario=" + idUsuario);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.getResponseCode();
+            conn.disconnect();
+        } catch (Exception e) {
+            Log.e("addUsuarioGrupoSync", "Error", e);
+        }
+    }
+
+    public static void addUsuarioGrupo(int idGrupo, int idUsuario, VoidCallback callback) {
+        new Thread(() -> {
+            String errorMsg = null;
+            try {
+                URL url = new URL("http://" + ip + "/CommsServerConsultas/rest/usuarios/addUsuarioGrupo?idGrupo=" + idGrupo + "&idUsuario=" + idUsuario);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+
+                int responseCode = conn.getResponseCode();
+                if (responseCode != HttpURLConnection.HTTP_OK) {
+                    errorMsg = "Error del servidor: " + responseCode;
+                }
+                conn.disconnect();
+
+            } catch (Exception e) {
+                Log.e("addUsuarioGrupo", "Error", e);
+                errorMsg = e.getMessage() != null ? e.getMessage() : "Error desconocido";
+            }
+
+            final String error = errorMsg;
+            new Handler(Looper.getMainLooper()).post(() -> {
+                if (error == null) {
+                    callback.onLoginSuccess();
+                } else {
+                    callback.onLoginFailure(error);
+                }
+            });
+        }).start();
+    }
+
+
+    public static void borrarUsuario(String usuario, String contra, VoidCallback callback){
+        new Thread(() -> {
+            String errorMsg = null;
+            try {
+                URL url = new URL("http://" + ip + "/CommsServerConsultas/rest/usuarios/borrar?nombre=" + usuario + "&contra=" + contra);
+                Log.d("BorrarUsuario", "URL: " + url.toString());
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+
+                int responseCode = conn.getResponseCode();
+                if (responseCode != HttpURLConnection.HTTP_OK) {
+                    errorMsg = "Error del servidor: " + responseCode;
+                }
+
+            } catch (Exception e) {
+                Log.e("Login", "Error al borrar usuario", e);
+                errorMsg = e.getMessage() != null ? e.getMessage() : "Error desconocido";
+            }
+
+
+            final String error = errorMsg;
+
+            new Handler(Looper.getMainLooper()).post(() -> {
+                if (error == null) {
+                    callback.onLoginSuccess();
+                } else {
+                    callback.onLoginFailure(error);
+                }
+            });
+        }).start();
+    }
+
+    public static void getNombreUsuario(int id, StringCallback callback) {
+        new Thread(() -> {
+            String errorMsg = null;
+            String nombre = null;
+
+            try {
+                URL url = new URL("http://" + ip + "/CommsServerConsultas/rest/usuarios/nombreusuario?id=" + id);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+
+                int responseCode = conn.getResponseCode();
+                if (responseCode != HttpURLConnection.HTTP_OK) {
+                    errorMsg = "Error del servidor: " + responseCode;
+                } else {
+                    InputStream stream = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
+
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        response.append(line.trim());
+                    }
+
+                    reader.close();
+                    conn.disconnect();
+
+                    nombre = response.toString();
+                }
+
+            } catch (Exception e) {
+                Log.e("API", "Error en getNombreUsuario", e);
+                errorMsg = e.getMessage() != null ? e.getMessage() : "Error desconocido";
+            }
+
+            final String error = errorMsg;
+            final String result = nombre;
+
+            new Handler(Looper.getMainLooper()).post(() -> {
+                if (error == null) {
+                    callback.onLoginSuccess(result);
+                } else {
+                    callback.onLoginFailure(error);
+                }
+            });
+
+        }).start();
+    }
+
+    public static void editarUsuario(int id, String nombre, String correo, String contra, VoidCallback callback) {
+        new Thread(() -> {
+            String errorMsg = null;
+            try {
+                URL url = new URL("http://" + ip + "/CommsServerConsultas/rest/usuarios/editar?id=" + id
+                        + "&nombre=" + nombre + "&correo=" + correo + "&contra=" + contra);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+
+                int responseCode = conn.getResponseCode();
+                if (responseCode != HttpURLConnection.HTTP_OK) {
+                    errorMsg = "Error del servidor: " + responseCode;
+                }
+                conn.disconnect();
+
+            } catch (Exception e) {
+                Log.e("editarUsuario", "Error", e);
+                errorMsg = e.getMessage() != null ? e.getMessage() : "Error desconocido";
+            }
+
+            final String error = errorMsg;
+            new Handler(Looper.getMainLooper()).post(() -> {
+                if (error == null) callback.onLoginSuccess();
+                else callback.onLoginFailure(error);
+            });
+        }).start();
+    }
 
     public interface MensajeEnviadoCallback {
         void onSuccess();

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -18,24 +19,25 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.appmoviles.ApiRest;
 import com.example.appmoviles.DatosUsuarioLogueado;
+import com.example.appmoviles.EditarCuenta;
 import com.example.appmoviles.LogIn;
 import com.example.appmoviles.Principal;
 import com.example.appmoviles.R;
 import com.example.appmoviles.Usuario;
+import com.example.appmoviles.VoidCallback;
 import com.example.appmoviles.databinding.FragmentUsuarioBinding;
 
 public class UsuarioFragment extends Fragment {
 
+    boolean flag = false;
     private FragmentUsuarioBinding binding;
 
     Usuario u;
     ImageView ivUsuario;
     TextView tvNombre;
     TextView tvCorreo;
-    Button btCNombre;
-    Button btCContra;
-    Button btCFoto;
-    Button btCCorreo;
+
+    Button btEditar;
     Button btSalir;
     Button btBorrar;
 
@@ -52,6 +54,8 @@ public class UsuarioFragment extends Fragment {
         tvNombre = binding.tvUsuario;
 
         tvCorreo = binding.tvMail;
+
+        Intent mod = new Intent(getContext(), EditarCuenta.class);
 
         DatosUsuarioLogueado viewModel = new ViewModelProvider(requireActivity()).get(DatosUsuarioLogueado.class);
         viewModel.getUsuario().observe(getViewLifecycleOwner(), usuario -> {
@@ -72,18 +76,25 @@ public class UsuarioFragment extends Fragment {
                 tvCorreo.setText(u.getCorreo());
 
             } catch (NullPointerException e){}
+            mod.putExtra("idUsuario", u.getId());
+            mod.putExtra("usuario",usuario);
 
         });
 
-        btCNombre = binding.btCNombre;
-        btCFoto = binding.btCFoto;
-        btCCorreo = binding.btCCorreo;
-        btCContra = binding.btCContra;
+        flag = false;
+
+        btEditar = binding.btEditarCuenta;
         btSalir = binding.btCerrar;
         btBorrar = binding.btBorrar;
 
 
-
+        btEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(mod);
+                getActivity();
+            }
+        });
 
         btSalir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +102,31 @@ public class UsuarioFragment extends Fragment {
                 Intent i = new Intent(getContext(), LogIn.class);
                 startActivity(i);
                 getActivity().finish();
+            }
+        });
+
+        btBorrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (flag){
+                    ApiRest.borrarUsuario(u.getNombre(), u.getContra(), new VoidCallback() {
+                        @Override
+                        public void onLoginSuccess() {
+                            Intent i = new Intent(getContext(), LogIn.class);
+                            startActivity(i);
+                            getActivity().finish();
+                        }
+
+                        @Override
+                        public void onLoginFailure(String errorMessage) {
+
+                            Toast.makeText(getContext(), "No se ha podido eliminar tu cuenta", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }else{
+                    Toast.makeText(getContext(), "Pulsa otra vez para eliminar tu cuenta", Toast.LENGTH_SHORT).show();
+                    flag = true;
+                }
             }
         });
 

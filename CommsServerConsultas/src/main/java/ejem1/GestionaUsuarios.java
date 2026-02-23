@@ -4,6 +4,7 @@ import java.io.Console;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -155,6 +156,12 @@ public class GestionaUsuarios {
 
     public ArrayList<Mensaje> getMensajes(int idc, int idu) {
 
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+        } catch (Exception e) {
+            return null;
+        }
+
         ArrayList<Mensaje> lista = new ArrayList<>();
         String consulta;
 
@@ -206,7 +213,7 @@ public class GestionaUsuarios {
                 id +
                 "";
 
-                System.out.println(consulta);
+        System.out.println(consulta);
         try (
 
                 Connection conexion = DriverManager.getConnection(URL, USER, PASS);
@@ -377,8 +384,6 @@ public class GestionaUsuarios {
     @Path("/chats")
     public Response ver(@QueryParam("id") int id) {
 
-
-
         ArrayList<Chat> chats = getChats(id);
         if (chats.isEmpty()) {
             return Response.status(Status.NOT_FOUND).entity("No se encontró").build();
@@ -472,5 +477,164 @@ public class GestionaUsuarios {
         return response;
 
     }
+
+    @GET
+    @Path("/borrar")
+    public Response borrarUsuario(@QueryParam("nombre") String nombre, @QueryParam("contra") String contra) {
+
+        try {
+
+            Class.forName("org.mariadb.jdbc.Driver");
+
+        } catch (Exception e) {
+            return null;
+        }
+
+        String consulta;
+
+        consulta = String.format("DELETE FROM `usuarios` WHERE `nombre` LIKE '%s' AND `contraseña` like '%s'", nombre,
+                contra);
+
+        System.out.println(consulta);
+
+        try (Connection conexion = DriverManager.getConnection(URL, USER, PASS);
+                Statement st = conexion.createStatement();) {
+            int i = st.executeUpdate(consulta);
+
+            if (i > 0) {
+                return Response.ok(i + " filas afectadas").build();
+            } else {
+                return Response.status(Status.NOT_FOUND).entity("No se encontró").build();
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Se ha producido un error: " + e.getMessage());
+            return Response.status(Status.BAD_REQUEST).entity("Bad request").build();
+        }
+
+    }
+
+    @GET
+    @Path("/nombreusuario")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getNombreUsuario(@QueryParam("id") int id) {
+
+        try {
+
+            Class.forName("org.mariadb.jdbc.Driver");
+
+        } catch (Exception e) {
+            return null;
+        }
+
+        String consulta;
+
+        consulta = String.format("SELECT `nombre` FROM `usuarios` WHERE `id`= %d LIMIT 1", id);
+
+        System.out.println(consulta);
+
+        try (Connection conexion = DriverManager.getConnection(URL, USER, PASS);
+                Statement st = conexion.createStatement();
+                ResultSet rs = st.executeQuery(consulta);) {
+
+            if (rs.next()) {
+                return Response.ok(rs.getString("nombre")).build();
+            } else {
+                return Response.status(Status.NOT_FOUND).entity("No se encontró").build();
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Se ha producido un error: " + e.getMessage());
+            return Response.status(Status.BAD_REQUEST).entity("Bad request").build();
+        }
+
+    }
+
+    @GET
+    @Path("/creargr")
+    public Response crearGrupo(@QueryParam("nombre") String nombre) {
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+        } catch (Exception e) {
+            return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+        }
+
+        String consulta = "INSERT INTO intermodular.grupos (nombre) VALUES ('" + nombre + "')";
+
+        try (Connection conexion = DriverManager.getConnection(URL, USER, PASS);
+            Statement st = conexion.createStatement()) {
+
+            st.executeUpdate(consulta, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = st.getGeneratedKeys();
+            if (rs.next()) {
+                int id = rs.getInt(1);
+                return Response.ok(id).build();
+            } else {
+                return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+            return Response.status(Status.BAD_REQUEST).build();
+        }
+    }
+
+    @GET
+    @Path("/addUsuarioGrupo")
+    public Response addUsuarioGrupo(@QueryParam("idGrupo") int idGrupo, @QueryParam("idUsuario") int idUsuario) {
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+        } catch (Exception e) {
+            return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+        }
+
+        String consulta = "INSERT INTO intermodular.`usuarios-grupos` (id_usuario, id_grupo) VALUES (" + idUsuario + ", " + idGrupo + ")";
+
+        try (Connection conexion = DriverManager.getConnection(URL, USER, PASS);
+            Statement st = conexion.createStatement()) {
+
+            st.executeUpdate(consulta);
+            return Response.ok().build();
+
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+            return Response.status(Status.BAD_REQUEST).build();
+        }
+    }
+
+    @GET
+    @Path("/editar")
+    public Response editarUsuario(@QueryParam("id") int id,
+                                @QueryParam("nombre") String nombre,
+                                @QueryParam("correo") String correo,
+                                @QueryParam("contra") String contra) {
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+        } catch (Exception e) {
+            return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+        }
+
+        String consulta = String.format(
+            "UPDATE `usuarios` SET `nombre`='%s', `correo`='%s', `contraseña`='%s' WHERE `id`=%d",
+            nombre, correo, contra, id);
+
+        System.out.println(consulta);
+
+        try (Connection conexion = DriverManager.getConnection(URL, USER, PASS);
+            Statement st = conexion.createStatement()) {
+
+            int filas = st.executeUpdate(consulta);
+            if (filas > 0) {
+                return Response.ok().build();
+            } else {
+                return Response.status(Status.NOT_FOUND).entity("Usuario no encontrado").build();
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+            return Response.status(Status.BAD_REQUEST).build();
+        }
+    }
+
 
 }

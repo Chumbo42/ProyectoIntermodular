@@ -43,16 +43,21 @@ public class ChatsFragment extends Fragment {
 
         chats = new ArrayList<>();
 
-        miAdaptador = new AdaptadorChats(chats,getContext(),idUsuario);
-        miLayoutManager = new LinearLayoutManager(getContext());
 
-        rv.setAdapter(miAdaptador);
-        rv.setLayoutManager(miLayoutManager);
+
 
 
         DatosUsuarioLogueado viewModel = new ViewModelProvider(requireActivity()).get(DatosUsuarioLogueado.class);
         viewModel.getUserId().observe(getViewLifecycleOwner(), idUsuario-> {
             this.idUsuario = idUsuario;
+
+            Log.i("INFO","IdUsuario en llamada a adaptador = " + idUsuario);
+
+            miAdaptador = new AdaptadorChats(chats,getContext(),idUsuario);
+            miLayoutManager = new LinearLayoutManager(getContext());
+
+            rv.setAdapter(miAdaptador);
+            rv.setLayoutManager(miLayoutManager);
 
             ApiRest.getChats(idUsuario, this.getContext(), new ChatsCallback() {
                 @Override

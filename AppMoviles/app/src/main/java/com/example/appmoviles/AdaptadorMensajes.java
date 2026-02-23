@@ -1,10 +1,12 @@
 package com.example.appmoviles;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,15 +23,17 @@ public class AdaptadorMensajes extends RecyclerView.Adapter<RecyclerView.ViewHol
     ArrayList<Mensaje> mensajes;
     Context contexto;
 
+    Boolean privado;
     private static final int MENSAJE_ENVIADO = 0;
     private static final int MENSAJE_RECIBIDO = 1;
 
 
-    public AdaptadorMensajes(ArrayList<Mensaje> msgs, Context contexto, int usuario)
+    public AdaptadorMensajes(ArrayList<Mensaje> msgs, Context contexto, int usuario, boolean privado)
     {
         this.mensajes = msgs;
         this.contexto = contexto;
         this.usuario = usuario;
+        this.privado = privado;
     }
 
     @Override
@@ -62,11 +66,35 @@ public class AdaptadorMensajes extends RecyclerView.Adapter<RecyclerView.ViewHol
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", Locale.getDefault());
 //        String hora = sdf.format(mensaje.getFecha());
 
-        if (holder instanceof MensajeEnviadoViewHolder) {
-            ((MensajeEnviadoViewHolder) holder).tvContenido.setText(mensaje.getContenido());
-        } else if (holder instanceof MensajeRecibidoViewHolder) {
-            ((MensajeRecibidoViewHolder) holder).tvContenido.setText(mensaje.getContenido());
+        if (privado){
+            Log.i("Privado", privado.toString());
+
+            if (holder instanceof MensajeEnviadoViewHolder) {
+                ((MensajeEnviadoViewHolder) holder).tvContenido.setText(mensaje.getContenido());
+            } else if (holder instanceof MensajeRecibidoViewHolder) {
+                ((MensajeRecibidoViewHolder) holder).tvContenido.setText(mensaje.getContenido());
+            }
+        }else{
+            if (holder instanceof MensajeEnviadoViewHolder) {
+                ((MensajeEnviadoViewHolder) holder).tvContenido.setText(mensaje.getContenido());
+            } else if (holder instanceof MensajeRecibidoViewHolder) {
+                ApiRest.getNombreUsuario(mensaje.getAutor(), new StringCallback() {
+                    @Override
+                    public void onLoginSuccess(String cadena) {
+                        ((MensajeRecibidoViewHolder) holder).tvContenido.setText(cadena + ": \n" + mensaje.getContenido());
+                    }
+
+                    @Override
+                    public void onLoginFailure(String errorMessage) {
+                        Toast.makeText(contexto, "No se ha podido cargar un mensaje", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+            }
         }
+
+
     }
 
     @Override

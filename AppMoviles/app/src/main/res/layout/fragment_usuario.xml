@@ -11,7 +11,7 @@
         android:id="@+id/btBorrar"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/button_border"
         android:text="Borrar cuenta"
         app:layout_constraintStart_toStartOf="@+id/btCerrar"
@@ -21,17 +21,17 @@
         android:id="@+id/btCerrar"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/button_border"
         android:text="Cerrar sesión"
-        app:layout_constraintStart_toStartOf="@+id/btCContra"
-        app:layout_constraintTop_toBottomOf="@+id/btCContra" />
+        app:layout_constraintStart_toStartOf="@+id/btEditarCuenta"
+        app:layout_constraintTop_toBottomOf="@+id/btEditarCuenta" />
 
     <TextView
         android:id="@+id/tvMail"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +56,7 @@
         android:id="@+id/tvUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:textColor="@color/white"
         android:textSize="34sp"
         android:textStyle="bold"
@@ -66,44 +66,14 @@
         app:layout_constraintTop_toBottomOf="@+id/ivUsuario" />
 
     <Button
-        android:id="@+id/btCNombre"
+        android:id="@+id/btEditarCuenta"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/button_border"
-        android:text="Cambiar Nombre de usuario"
+        android:text="Editar Cuenta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvMail" />
-
-    <Button
-        android:id="@+id/btCCorreo"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:background="@drawable/button_border"
-        android:text="Cambiar correo"
-        app:layout_constraintStart_toStartOf="@+id/btCFoto"
-        app:layout_constraintTop_toBottomOf="@+id/btCFoto" />
-
-    <Button
-        android:id="@+id/btCContra"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:background="@drawable/button_border"
-        android:text="Cambiar contraseña"
-        app:layout_constraintStart_toStartOf="@+id/btCCorreo"
-        app:layout_constraintTop_toBottomOf="@+id/btCCorreo" />
-
-    <Button
-        android:id="@+id/btCFoto"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:background="@drawable/button_border"
-        android:text="Cambiar foto de perfil"
-        app:layout_constraintStart_toStartOf="@+id/btCNombre"
-        app:layout_constraintTop_toBottomOf="@+id/btCNombre" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
