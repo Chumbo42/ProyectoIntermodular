@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -15,6 +16,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -31,6 +33,8 @@ public class conversacion extends AppCompatActivity {
     AdaptadorMensajes miAdaptador;
     RecyclerView.LayoutManager miLayoutManager;
     ArrayList<Mensaje> msgs;
+    Boolean teclado;
+    ConstraintLayout rootView;
     ImageButton enviar;
     int idUsuario;
     EditText etMensaje;
@@ -40,13 +44,17 @@ public class conversacion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_conversacion);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.layoutConver), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
+
         Intent pretexto = getIntent();
+
+
+
 
 
 
@@ -56,6 +64,8 @@ public class conversacion extends AppCompatActivity {
         Log.i("info", chat.getNombre());
         Log.i("info", chat.getId()+"");
         Log.i("info", chat.getPrivado()+"");
+
+
 
 
         tb = findViewById(R.id.toolbar2);
@@ -75,6 +85,11 @@ public class conversacion extends AppCompatActivity {
         rv.setLayoutManager(miLayoutManager);
 
         enviar = findViewById(R.id.btEnviar);
+
+
+
+
+
 
 
 

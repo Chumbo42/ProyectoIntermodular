@@ -2,6 +2,7 @@ package com.example.appmoviles;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,8 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
-import java.util.ArrayList;
 
 public class CrearCuenta extends AppCompatActivity {
 
@@ -29,7 +28,7 @@ public class CrearCuenta extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_crear_cuenta);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.layoutConver), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -53,28 +52,37 @@ public class CrearCuenta extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int i = 0;
-                boolean libre = ApiRest.usuarioLibre(etNewName.getText().toString());
+                ApiRest.usuarioLibre(etNewName.getText().toString(), new StringCallback() {
+                    @Override
+                    public void onLoginSuccess(String cadena) {
 
-                if (etNewPass.getText().toString().trim().equals(etRepPass.getText().toString().trim()) && !etNewName.getText().toString().isEmpty() && !etNewPass.getText().toString().isEmpty()){
-                    if (libre){
+                        Log.i("Info", cadena);
 
+                        Toast.makeText(CrearCuenta.this, "Ya existe un usuario con ese nombre", Toast.LENGTH_SHORT).show();
+
+
+
+                    }
+
+                    @Override
+                    public void onLoginFailure(String errorMessage) {
+
+                        Toast.makeText(CrearCuenta.this, "Usuario Creado", Toast.LENGTH_SHORT).show();
                         Usuario n = new Usuario(etNewName.getText().toString().trim(), etNewPass.getText().toString().trim());
                         Intent result = new Intent();
                         result.putExtra("usuarioNuevo", n);
-                        setResult(RESULT_OK,result);
+                        setResult(RESULT_OK, result);
                         finish();
 
-
-                    }else {
-                        Toast.makeText(CrearCuenta.this, "Ya existe un usuario con ese nombre", Toast.LENGTH_SHORT).show();
                     }
-                }else{
-                    Toast.makeText(CrearCuenta.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
-                }
-
-
+                });
             }
         });
     }
-
 }
+
+
+
+
+
+

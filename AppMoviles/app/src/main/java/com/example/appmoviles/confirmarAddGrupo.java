@@ -25,6 +25,7 @@ public class confirmarAddGrupo extends AppCompatActivity {
 
     EditText et;
     TextView tv;
+    TextView tvUsuarios;
     Button bt;
 
     Toolbar tb;
@@ -35,7 +36,7 @@ public class confirmarAddGrupo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_confirmar_add_grupo);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.layoutConver), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -55,7 +56,10 @@ public class confirmarAddGrupo extends AppCompatActivity {
 
         et = findViewById(R.id.etNombreGrupo);
         tv = findViewById(R.id.tvNombresParticipantes);
+        tvUsuarios = findViewById(R.id.tvParticipantes);
         bt = findViewById(R.id.btCrearGrupo);
+
+        tvUsuarios.setText(tvUsuarios.getText().toString() + "(" + integrantes.size() +  ")");
 
         for ( Chat c: integrantes ) {
             tv.setText(tv.getText() + c.getNombre() + ", ");

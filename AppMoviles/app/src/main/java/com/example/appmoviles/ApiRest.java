@@ -145,39 +145,57 @@ public class ApiRest {
         }).start();
     }
 
-    public static boolean usuarioLibre(String username) {
-        try {
-            URL url = new URL("http://" + ip + "/CommsServerConsultas/rest/usuarios/nombres/nombre=" + username);
+    public static void usuarioLibre(String username, StringCallback callback) {
+        new Thread(() -> {
+            String errorMsg = null;
+            String nombre = null;
 
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            conn.setRequestProperty("Accept", "application/json");
+            try {
+                URL url = new URL("http://" + ip + "/CommsServerConsultas/rest/usuarios/nombres?nombre=" + username);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
 
-            int code = conn.getResponseCode();
-            System.out.println("Código HTTP: " + code);
+                int responseCode = conn.getResponseCode();
+                if (responseCode != HttpURLConnection.HTTP_OK) {
+                    errorMsg = "Error del servidor: " + responseCode;
+                } else {
+                    InputStream stream = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
 
-            InputStream stream = conn.getInputStream();
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        response.append(line.trim());
+                    }
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8) );
+                    reader.close();
+                    conn.disconnect();
 
-            StringBuilder response = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null)
-            { response.append(line.trim());
-            }
+                    nombre = response.toString();
 
-            if (code == 200) {
-                if (username.equals(response.toString())){
-                    return false;
+                    Log.i("infoNmbre", nombre);
                 }
+
+            } catch (Exception e) {
+                Log.e("API", "Error en getNombreUsuario", e);
+                errorMsg = e.getMessage() != null ? e.getMessage() : "Error desconocido";
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            final String error = errorMsg;
+            final String result = nombre;
 
-        return true; // si hay error
+            new Handler(Looper.getMainLooper()).post(() -> {
+                if (error == null) {
+
+                    callback.onLoginSuccess(result);
+                } else {
+                    callback.onLoginFailure(error);
+                }
+            });
+
+        }).start();
     }
+
 
     public static ArrayList<Chat> getChats(int id, Context contexto, ChatsCallback callback) {
         // Ejecutar en hilo secundario
