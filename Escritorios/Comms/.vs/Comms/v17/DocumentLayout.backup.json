@@ -1,0 +1,250 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|e:\\0000 - vivas\\intermodular\\proyectointermodular\\escritorios\\comms\\comms\\formchats.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|solutionrelative:comms\\formchats.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\comms\\formchats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|solutionrelative:comms\\formchats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\comms\\formregistro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|solutionrelative:comms\\formregistro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\comms\\formperfil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|solutionrelative:comms\\formperfil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\comms\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|solutionrelative:comms\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|e:\\0000 - vivas\\intermodular\\proyectointermodular\\escritorios\\comms\\comms\\chat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|solutionrelative:comms\\chat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\comms\\formperfil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|solutionrelative:comms\\formperfil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\comms\\formchats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|solutionrelative:comms\\formchats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\comms\\sesion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|solutionrelative:comms\\sesion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\comms\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|solutionrelative:comms\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\comms\\apirest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|solutionrelative:comms\\apirest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\comms\\celda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|solutionrelative:comms\\celda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\comms\\formregistro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|solutionrelative:comms\\formregistro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\comms\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F93628F7-E3F2-4348-B49A-57A69C96772C}|Comms\\Comms.csproj|solutionrelative:comms\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FormChats.Designer.cs",
+              "DocumentMoniker": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\FormChats.Designer.cs",
+              "RelativeDocumentMoniker": "Comms\\FormChats.Designer.cs",
+              "ToolTip": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\FormChats.Designer.cs",
+              "RelativeToolTip": "Comms\\FormChats.Designer.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAowDwAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T21:30:12.159Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FormRegistro.cs [Dise\u00F1o]",
+              "DocumentMoniker": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\FormRegistro.cs",
+              "RelativeDocumentMoniker": "Comms\\FormRegistro.cs",
+              "ToolTip": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\FormRegistro.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Comms\\FormRegistro.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T21:21:03.874Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FormPerfil.cs [Dise\u00F1o]",
+              "DocumentMoniker": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\FormPerfil.cs",
+              "RelativeDocumentMoniker": "Comms\\FormPerfil.cs",
+              "ToolTip": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\FormPerfil.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Comms\\FormPerfil.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T21:21:00.919Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FormLogin.cs [Dise\u00F1o]",
+              "DocumentMoniker": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\FormLogin.cs",
+              "RelativeDocumentMoniker": "Comms\\FormLogin.cs",
+              "ToolTip": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\FormLogin.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Comms\\FormLogin.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T21:20:56.024Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FormChats.cs [Dise\u00F1o]",
+              "DocumentMoniker": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\FormChats.cs",
+              "RelativeDocumentMoniker": "Comms\\FormChats.cs",
+              "ToolTip": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\FormChats.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Comms\\FormChats.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T21:20:46.205Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ApiRest.cs",
+              "DocumentMoniker": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\ApiRest.cs",
+              "RelativeDocumentMoniker": "Comms\\ApiRest.cs",
+              "ToolTip": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\ApiRest.cs*",
+              "RelativeToolTip": "Comms\\ApiRest.cs*",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAsAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T21:19:34.633Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Chat.cs",
+              "DocumentMoniker": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\Chat.cs",
+              "RelativeDocumentMoniker": "Comms\\Chat.cs",
+              "ToolTip": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\Chat.cs",
+              "RelativeToolTip": "Comms\\Chat.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAIAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T21:19:28.51Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Sesion.cs",
+              "DocumentMoniker": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\Sesion.cs",
+              "RelativeDocumentMoniker": "Comms\\Sesion.cs",
+              "ToolTip": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\Sesion.cs",
+              "RelativeToolTip": "Comms\\Sesion.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T21:19:26.196Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\Program.cs",
+              "RelativeDocumentMoniker": "Comms\\Program.cs",
+              "ToolTip": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\Program.cs",
+              "RelativeToolTip": "Comms\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T21:19:19.415Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "FormChats.cs",
+              "DocumentMoniker": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\FormChats.cs",
+              "RelativeDocumentMoniker": "Comms\\FormChats.cs",
+              "ToolTip": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\FormChats.cs",
+              "RelativeToolTip": "Comms\\FormChats.cs",
+              "ViewState": "AgIAAIAAAAAAAAAAAAAwwJUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T21:18:47.654Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FormPerfil.cs",
+              "DocumentMoniker": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\FormPerfil.cs",
+              "RelativeDocumentMoniker": "Comms\\FormPerfil.cs",
+              "ToolTip": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\FormPerfil.cs",
+              "RelativeToolTip": "Comms\\FormPerfil.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAowDQAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T21:19:12.024Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Celda.cs",
+              "DocumentMoniker": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\Celda.cs",
+              "RelativeDocumentMoniker": "Comms\\Celda.cs",
+              "ToolTip": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\Celda.cs",
+              "RelativeToolTip": "Comms\\Celda.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T21:19:30.641Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "FormRegistro.cs",
+              "DocumentMoniker": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\FormRegistro.cs",
+              "RelativeDocumentMoniker": "Comms\\FormRegistro.cs",
+              "ToolTip": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\FormRegistro.cs",
+              "RelativeToolTip": "Comms\\FormRegistro.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T21:19:15.649Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "FormLogin.cs",
+              "DocumentMoniker": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\FormLogin.cs",
+              "RelativeDocumentMoniker": "Comms\\FormLogin.cs",
+              "ToolTip": "E:\\0000 - Vivas\\Intermodular\\ProyectoIntermodular\\Escritorios\\Comms\\Comms\\FormLogin.cs",
+              "RelativeToolTip": "Comms\\FormLogin.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T21:19:07.039Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

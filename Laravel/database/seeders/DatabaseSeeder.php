@@ -110,12 +110,6 @@ class DatabaseSeeder extends Seeder
                 'id_grupo'=>'1',
             ]
         );
-          DB::table('usuarios-grupos')->insert(
-            [
-                'id_usuario'=>'1',
-                'id_grupo'=>'3',
-            ]
-        );
         DB::table('msgprivado')->insert(
             [
                 'autor'=>'3',

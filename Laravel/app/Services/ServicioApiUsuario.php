@@ -36,7 +36,7 @@ class ServicioApiUsuario
         $respuesta = Http::get($this->urlBase . '/nombres', [
             'nombre' => $nombre,
         ]);
-        return $respuesta->body();
+        return $respuesta->status() === 404;
     }
 
     public function obtenerChats($id)

@@ -55,8 +55,7 @@ class AutenticacionController extends Controller
             return redirect()->route('registro')->with('error', 'Las contraseñas no coinciden');
         }
 
-        $disponible = $this->servicio->nombreLibre($nombre);
-        if (trim($disponible) !== $nombre) {
+        if (!$this->servicio->nombreLibre($nombre)) {
             return redirect()->route('registro')->with('error', 'El nombre de usuario ya está en uso');
         }
 
