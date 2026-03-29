@@ -16,6 +16,7 @@ namespace Comms
             this.barraNav = new System.Windows.Forms.Panel();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.lblUsuario = new System.Windows.Forms.Label();
+            this.btAdd = new System.Windows.Forms.Button();
             this.btPerfil = new System.Windows.Forms.Button();
             this.panelChats = new System.Windows.Forms.Panel();
             this.barraNav.SuspendLayout();
@@ -24,6 +25,7 @@ namespace Comms
 
             this.barraNav.BackColor = System.Drawing.Color.FromArgb(15, 15, 15);
             this.barraNav.Controls.Add(this.btPerfil);
+            this.barraNav.Controls.Add(this.btAdd);
             this.barraNav.Controls.Add(this.lblUsuario);
             this.barraNav.Controls.Add(this.lblTitulo);
             this.barraNav.Dock = System.Windows.Forms.DockStyle.Top;
@@ -36,6 +38,7 @@ namespace Comms
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
             this.lblTitulo.ForeColor = System.Drawing.Color.FromArgb(98, 77, 157);
+            this.lblTitulo.TabStop = false;
             this.lblTitulo.Text = "Comms";
 
             this.lblTitulo.Location = new System.Drawing.Point(15, 13);
@@ -45,12 +48,28 @@ namespace Comms
 
             this.lblUsuario.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblUsuario.ForeColor = System.Drawing.Color.FromArgb(180, 180, 180);
+            this.lblUsuario.TabStop = false;
             this.lblUsuario.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 
-            this.lblUsuario.Location = new System.Drawing.Point(130, 13);
+            this.lblUsuario.Location = new System.Drawing.Point(100, 13);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(200, 30);
             this.lblUsuario.TabIndex = 1;
+
+
+            this.btAdd.BackColor = System.Drawing.Color.Transparent;
+            this.btAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btAdd.Font = new System.Drawing.Font("Segoe UI", 16F);
+            this.btAdd.ForeColor = System.Drawing.Color.FromArgb(98, 77, 157);
+            this.btAdd.Text = "+";
+            this.btAdd.FlatAppearance.BorderSize = 0;
+            this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
+
+            this.btAdd.Location = new System.Drawing.Point(316, 10);
+            this.btAdd.Name = "btAdd";
+            this.btAdd.Size = new System.Drawing.Size(40, 35);
+            this.btAdd.TabIndex = 3;
 
 
             this.btPerfil.BackColor = System.Drawing.Color.Transparent;
@@ -94,6 +113,7 @@ namespace Comms
         private System.Windows.Forms.Panel barraNav;
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label lblUsuario;
+        private System.Windows.Forms.Button btAdd;
         private System.Windows.Forms.Button btPerfil;
         private System.Windows.Forms.Panel panelChats;
     }

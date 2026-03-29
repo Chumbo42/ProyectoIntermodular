@@ -28,6 +28,7 @@ namespace Comms
 
             this.lblTitulo.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
             this.lblTitulo.ForeColor = System.Drawing.Color.White;
+            this.lblTitulo.TabStop = false;
             this.lblTitulo.Text = "Vamos a crearte una cuenta";
             this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
@@ -40,6 +41,7 @@ namespace Comms
             this.lbl1.AutoSize = true;
             this.lbl1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lbl1.ForeColor = System.Drawing.Color.FromArgb(180, 180, 180);
+            this.lbl1.TabStop = false;
             this.lbl1.Text = "Nombre de usuario";
 
             this.lbl1.Location = new System.Drawing.Point(60, 130);
@@ -61,6 +63,7 @@ namespace Comms
             this.lbl2.AutoSize = true;
             this.lbl2.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lbl2.ForeColor = System.Drawing.Color.FromArgb(180, 180, 180);
+            this.lbl2.TabStop = false;
             this.lbl2.Text = "Contraseña";
 
             this.lbl2.Location = new System.Drawing.Point(60, 195);
@@ -83,6 +86,7 @@ namespace Comms
             this.lbl3.AutoSize = true;
             this.lbl3.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lbl3.ForeColor = System.Drawing.Color.FromArgb(180, 180, 180);
+            this.lbl3.TabStop = false;
             this.lbl3.Text = "Repetir contraseña";
 
             this.lbl3.Location = new System.Drawing.Point(60, 260);
@@ -104,6 +108,7 @@ namespace Comms
 
             this.lblError.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblError.ForeColor = System.Drawing.Color.FromArgb(220, 80, 80);
+            this.lblError.TabStop = false;
 
             this.lblError.Location = new System.Drawing.Point(60, 320);
             this.lblError.Name = "lblError";
@@ -112,6 +117,7 @@ namespace Comms
 
 
             this.btCrearCuenta.BackColor = System.Drawing.Color.FromArgb(98, 77, 157);
+            this.btCrearCuenta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btCrearCuenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btCrearCuenta.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btCrearCuenta.ForeColor = System.Drawing.Color.White;
@@ -126,6 +132,7 @@ namespace Comms
 
 
             this.btCancelar.BackColor = System.Drawing.Color.Transparent;
+            this.btCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btCancelar.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btCancelar.ForeColor = System.Drawing.Color.FromArgb(150, 150, 150);
@@ -139,6 +146,8 @@ namespace Comms
             this.btCancelar.TabIndex = 9;
 
 
+            this.AcceptButton = this.btCrearCuenta;
+            this.CancelButton = this.btCancelar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;

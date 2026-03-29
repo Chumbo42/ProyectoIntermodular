@@ -27,6 +27,7 @@ namespace Comms
 
             this.lblTitulo.Font = new System.Drawing.Font("Segoe UI", 28F, System.Drawing.FontStyle.Bold);
             this.lblTitulo.ForeColor = System.Drawing.Color.FromArgb(98, 77, 157);
+            this.lblTitulo.TabStop = false;
             this.lblTitulo.Text = "Comms";
             this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
@@ -38,6 +39,7 @@ namespace Comms
 
             this.lblBienvenido.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.lblBienvenido.ForeColor = System.Drawing.Color.White;
+            this.lblBienvenido.TabStop = false;
             this.lblBienvenido.Text = "¡Bienvenido a Comms!";
             this.lblBienvenido.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
@@ -50,6 +52,7 @@ namespace Comms
             this.lblNombreLabel.AutoSize = true;
             this.lblNombreLabel.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblNombreLabel.ForeColor = System.Drawing.Color.FromArgb(180, 180, 180);
+            this.lblNombreLabel.TabStop = false;
             this.lblNombreLabel.Text = "Nombre de usuario";
 
             this.lblNombreLabel.Location = new System.Drawing.Point(60, 190);
@@ -71,6 +74,7 @@ namespace Comms
             this.lblContraLabel.AutoSize = true;
             this.lblContraLabel.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblContraLabel.ForeColor = System.Drawing.Color.FromArgb(180, 180, 180);
+            this.lblContraLabel.TabStop = false;
             this.lblContraLabel.Text = "Contraseña";
 
             this.lblContraLabel.Location = new System.Drawing.Point(60, 255);
@@ -92,6 +96,7 @@ namespace Comms
 
             this.lblError.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblError.ForeColor = System.Drawing.Color.FromArgb(220, 80, 80);
+            this.lblError.TabStop = false;
 
             this.lblError.Location = new System.Drawing.Point(60, 315);
             this.lblError.Name = "lblError";
@@ -100,6 +105,7 @@ namespace Comms
 
 
             this.btLogin.BackColor = System.Drawing.Color.FromArgb(98, 77, 157);
+            this.btLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btLogin.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btLogin.ForeColor = System.Drawing.Color.White;
@@ -114,6 +120,7 @@ namespace Comms
 
 
             this.btCrear.BackColor = System.Drawing.Color.Transparent;
+            this.btCrear.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btCrear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btCrear.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btCrear.ForeColor = System.Drawing.Color.FromArgb(150, 150, 150);
@@ -127,6 +134,7 @@ namespace Comms
             this.btCrear.TabIndex = 8;
 
 
+            this.AcceptButton = this.btLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;

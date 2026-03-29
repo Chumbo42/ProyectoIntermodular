@@ -41,6 +41,8 @@ namespace Comms
         public Celda()
         {
             InitializeComponent();
+            lblNombre.Click += (s, e) => OnClick(e);
+            lblTipo.Click += (s, e) => OnClick(e);
         }
 
         protected override void OnPaint(PaintEventArgs e)

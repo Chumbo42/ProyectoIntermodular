@@ -21,6 +21,7 @@ namespace Comms
             this.lblNombre.AutoEllipsis = true;
             this.lblNombre.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.lblNombre.ForeColor = System.Drawing.Color.White;
+            this.lblNombre.TabStop = false;
 
             this.lblNombre.Location = new System.Drawing.Point(75, 12);
             this.lblNombre.Name = "lblNombre";
@@ -30,6 +31,7 @@ namespace Comms
 
             this.lblTipo.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblTipo.ForeColor = System.Drawing.Color.FromArgb(150, 150, 150);
+            this.lblTipo.TabStop = false;
             this.lblTipo.Text = "Privado";
 
             this.lblTipo.Location = new System.Drawing.Point(75, 40);

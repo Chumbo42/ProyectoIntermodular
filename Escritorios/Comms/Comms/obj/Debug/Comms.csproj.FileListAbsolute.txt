@@ -1,0 +1,10 @@
+E:\0000 - Vivas\Intermodular\ProyectoIntermodular\Escritorios\Comms\Comms\bin\Debug\Comms.exe.config
+E:\0000 - Vivas\Intermodular\ProyectoIntermodular\Escritorios\Comms\Comms\bin\Debug\Comms.exe
+E:\0000 - Vivas\Intermodular\ProyectoIntermodular\Escritorios\Comms\Comms\bin\Debug\Comms.pdb
+E:\0000 - Vivas\Intermodular\ProyectoIntermodular\Escritorios\Comms\Comms\obj\Debug\Comms.csproj.AssemblyReference.cache
+E:\0000 - Vivas\Intermodular\ProyectoIntermodular\Escritorios\Comms\Comms\obj\Debug\Comms.Properties.Resources.resources
+E:\0000 - Vivas\Intermodular\ProyectoIntermodular\Escritorios\Comms\Comms\obj\Debug\Comms.csproj.GenerateResource.cache
+E:\0000 - Vivas\Intermodular\ProyectoIntermodular\Escritorios\Comms\Comms\obj\Debug\Comms.csproj.CoreCompileInputs.cache
+E:\0000 - Vivas\Intermodular\ProyectoIntermodular\Escritorios\Comms\Comms\obj\Debug\Comms.exe
+E:\0000 - Vivas\Intermodular\ProyectoIntermodular\Escritorios\Comms\Comms\obj\Debug\Comms.pdb
+E:\0000 - Vivas\Intermodular\ProyectoIntermodular\Escritorios\Comms\Comms\obj\Debug\Comms.exe.config

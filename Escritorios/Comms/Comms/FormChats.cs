@@ -46,6 +46,8 @@ namespace Comms
                 celda.Location = new System.Drawing.Point(0, y);
                 celda.Width = panelChats.ClientSize.Width;
                 celda.Height = 70;
+                Chat chatLocal = chat;
+                celda.Click += (s, ev) => new FormConversacion(chatLocal.id, chatLocal.nombre, chatLocal.privado).ShowDialog();
                 panelChats.Controls.Add(celda);
                 y += 75;
             }
@@ -55,8 +57,19 @@ namespace Comms
 
         private void btPerfil_Click(object sender, EventArgs e)
         {
-            new FormPerfil().ShowDialog();
+            FormPerfil perfil = new FormPerfil();
+            if (perfil.ShowDialog() == System.Windows.Forms.DialogResult.Abort)
+            {
+                this.Close();
+                return;
+            }
             lblUsuario.Text = Sesion.usuario_nombre;
+        }
+
+        private void btAdd_Click(object sender, EventArgs e)
+        {
+            new FormAdd().ShowDialog();
+            _ = CargarChats();
         }
     }
 }

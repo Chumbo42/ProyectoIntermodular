@@ -55,11 +55,35 @@
       <DependentUpon>Celda.cs</DependentUpon>
     </Compile>
     <Compile Include="Chat.cs" />
-<Compile Include="FormChats.cs">
+    <Compile Include="FormAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAdd.Designer.cs">
+      <DependentUpon>FormAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAddGrupo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddGrupo.Designer.cs">
+      <DependentUpon>FormAddGrupo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAddPrivado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddPrivado.Designer.cs">
+      <DependentUpon>FormAddPrivado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormChats.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormChats.Designer.cs">
       <DependentUpon>FormChats.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormConversacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConversacion.Designer.cs">
+      <DependentUpon>FormConversacion.cs</DependentUpon>
     </Compile>
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
@@ -79,8 +103,10 @@
     <Compile Include="FormRegistro.Designer.cs">
       <DependentUpon>FormRegistro.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mensaje.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Sesion.cs" />
+    <Compile Include="Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

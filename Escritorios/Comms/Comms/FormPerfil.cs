@@ -72,6 +72,16 @@ namespace Comms
             }
         }
 
+        private void btCerrarSesion_Click(object sender, EventArgs e)
+        {
+            Sesion.usuario_id = 0;
+            Sesion.usuario_nombre = "";
+            Sesion.usuario_correo = "";
+            Sesion.usuario_contra = "";
+            this.DialogResult = System.Windows.Forms.DialogResult.Abort;
+            this.Close();
+        }
+
         private void btVolver_Click(object sender, EventArgs e)
         {
             this.Close();
